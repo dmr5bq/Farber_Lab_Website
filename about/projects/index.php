@@ -1,4 +1,7 @@
 <!DOCTYPE html>
+
+<?php require_once "../../data.php"; ?>
+
 <!--  
 *** PLEASE READ ***
 Copyright 2016, Dominic Ritchey
@@ -13,10 +16,13 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
         <title>Farber Lab - Publications</title>
         <meta name="description" content="Farber Lab - Center for Public Health Genomics">
         <link rel="stylesheet" href="project_detail.css"> <!-- Publications stylesheet -->
-        
-        <link rel="stylesheet" href="master.css">
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> <!-- font -->
-        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'> <!-- font2 -->
+
+        <?php
+
+        get_style_link('about');
+        get_script_link();
+
+        ?>
         
          <!-- jQuery link MUST come first --> 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> <!-- jQuery -->

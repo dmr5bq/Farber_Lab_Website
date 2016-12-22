@@ -98,7 +98,7 @@
     text-shadow:                var(--sm-text-link-drop);
 }
 
-#small-text p : first-child {
+#small-text p:first-child {
     font-size:                  var(--sm-text-1st-size);
     padding-top:                var(--sm-text-1st-p-top);
 }

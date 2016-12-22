@@ -17,9 +17,12 @@
     --secondary-color:      #5568D0;
     --tertiary-color:       #E59F00;
     --quaternary-color:     #000080;
+    /* TODO */
+    --quinary-color:        #000;
+    --senary-color:         #000;
     
     /* Page-wide Parameters */
-    --page-background-image:url('web_bg3.jpg');
+    --page-background-image:url('../assets/web_bg3.jpg');
     --page-base-layer:      0; /*set behind header*/
     
     /*  Body Parameters */ 
@@ -214,7 +217,7 @@
     padding-left:           var(--nav-p-left);
     font-weight:            var(--nav-fw);
 }
-#nav p.selected-nav : hover { /* Highlights current page in nav */
+#nav p.selected-nav:hover { /* Highlights current page in nav */
     color:                  var(--tertiary-color);
 }
 #nav p:hover { /* Nav menu text links on hover */
@@ -287,7 +290,7 @@
     font-size:              var(--menu-txt-size);
     font-weight:            var(--menu-txt-fw);
 }
-#menu a : hover{
+#menu a:hover{
     color:                  var(--highlight-text-color);
 }
 #total-wrapper {

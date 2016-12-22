@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+
+<?php
+
+    require_once "../data.php";
+
+?>
+
 <html>
 <!--  
 *** PLEASE READ ***
@@ -7,11 +14,14 @@ Please do not re-use without express permission of the developer.
 Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virginia.edu. -->  
     <head>
         <title>Farber Lab - About</title>
-        
-        <link rel="stylesheet" href="about.css">
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
-        
+
+        <?php
+
+            get_style_link('about');
+            get_script_link();
+
+        ?>
+
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="Farber Lab - Center for Public Health Genomics">

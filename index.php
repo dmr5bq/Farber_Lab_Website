@@ -1,5 +1,12 @@
 <!DOCTYPE html>
 <html>
+
+<?php
+require_once "data.php";
+?>
+
+
+
 <!--  
 *** PLEASE READ ***
 Copyright 2016, Dominic Ritchey
@@ -7,24 +14,27 @@ Please do not re-use without express permission of the developer.
 Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virginia.edu. -->  
     <head>
         <title>Farber Lab - Home</title>
-        
-        <link rel="stylesheet" href="home.css">
+
+        <?php
+
+        get_style_link('home');
+        get_script_link();
+
+        ?>
+
         <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
         
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="Farber Lab - Center for Public Health Genomics">
-        
-         <!-- jQuery link MUST come first --> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="master.js"></script>
+
     </head>
     <body>
         <div id="header-container">
             <div id="header">
                 <img src="DNA_white.jpg">
-                <a href="index.html">
+                <a href="<?php get_link('home', 'home') ?>">
                     <div id="logo">
                         <p>The</p>
                         <p><strong>Farber</strong></p>
@@ -32,11 +42,11 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                     </div> <!-- logo -->
                 </a> 
                 <div id="nav">
-                    <a href="javascript:void(0);"><p class="selected-nav">HOME</p></a>
-                    <a href="About.html"><p>ABOUT</p></a>
-                    <a href="People.html"><p>PEOPLE</p></a>
-                    <a href="Publications.html"><p>PUBLICATIONS</p></a>
-                    <a href="Contact.html"><p>CONTACT</p></a>
+                    <a href="<?php get_link('home', 'home') ?>"><p class="selected-nav">HOME</p></a>
+                    <a href="<?php get_link('home', 'about') ?>"><p>ABOUT</p></a>
+                    <a href="<?php get_link('home', 'people') ?>"><p>PEOPLE</p></a>
+                    <a href="<?php get_link('home', 'publications') ?>"><p>PUBLICATIONS</p></a>
+                    <a href="<?php get_link('home', 'contact') ?>"><p>CONTACT</p></a>
                 </div> <!-- nav -->
                 <div id="header-img-box">
                     <a href="https://med.virginia.edu/" class="header-logo"><img src="medicine_white.gif"></a>
