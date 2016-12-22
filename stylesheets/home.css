@@ -1,0 +1,214 @@
+/******************************************
+** Home page stylesheet ******
+*******************************************
+*******************************************
+* Copyright 2016 Dominic Ritchey **********
+* for reuse, contact dmr5bq@virginia.edu **
+*******************************************/
+@import url('master.css'); /* Import all of the master styles */
+
+:root {
+    
+    --body-p-bottom:            0px  !important;
+    
+    --side-panel-width:         33%;
+    --side-panel-radius:        2px;
+    --side-panel-background:    var(--quinary-color);
+    --side-panel-p:             15px;
+    --side-panel-border:        5px solid var(--secondary-color);
+    --side-panel-layer:         1;
+    
+    --sm-photo-wrap-width:      80%;
+    --sm-photo-wrap-height:     400px;
+    --sm-photo-wrap-m-top:      50px;
+    --sm-photo-wrap-m-left:     10%;
+    --sm-photo-wrap-radius:     4px;
+    --sm-photo-wrap-border:     2px solid #fff;
+    --sm-photo-wrap-drop:       -4px 4px 7px rgba(0,0,0,0.4);
+    
+    --sm-text-width:            100%;
+    
+    --body-text-size:           20px;
+    --body-text-m-top:          0px;
+    --body-text-color:          #fff;
+    
+    --sm-text-link-color:       #fff;
+    --sm-text-link-drop:        -2px 1px 1px rgba(0,255,255,0.6);
+    
+    --sm-text-1st-size:         36px;
+    --sm-text-1st-p-top:        20px;
+    
+    --sm-photo-height:          100%;
+    --sm-photo-m-left:          -30%;
+    
+    --span-color:               var(--senary-color); 
+    
+    --list-img-width:           60%; 
+    
+    --list-text-size:           20px;
+    --list-text-p-top:          15px;
+    --list-text-width:          80%;
+    
+    --bottom-logo-width:        60%;
+    --bottom-logo-left-anchor:  42.5%;
+    --bottom-logo-top-anchor:   200px;
+    
+    --bottom-logo-text-size:    36px;
+}
+
+#big-box {
+    padding-bottom:             var(--body-p-bottom);
+}
+
+#small-box {
+    overflow:                   hidden;
+    width:                      var(--side-panel-width);
+    border-radius:              var(--side-panel-radius);
+    background:                 var(--side-panel-background);
+    padding:                    var(--side-panel-p);
+    border-right:               var(--side-panel-border);
+    z-index:                    var(--side-panel-layer);
+}
+
+#small-photo-wrapper {
+    overflow:                   hidden;
+    width:                      var(--sm-photo-wrap-width);
+    height:                     var(--sm-photo-wrap-height);
+    margin-top:                 var(--sm-photo-wrap-m-top);
+    margin-left:                var(--sm-photo-wrap-m-left);
+    border-radius:              var(--sm-photo-wrap-radius);
+    border:                     var(--sm-photo-wrap-border);
+    box-shadow:                 var(--sm-photo-wrap-drop);
+}
+
+#small-text {
+    text-align:                 center;
+    width:                      var(--sm-text-width);
+}
+
+#big-box p {
+    font-family:                var(--font);
+    font-size:                  var(--body-text-size);
+    margin-top:                 var(--body-text-m-top);
+    color:                      var(--body-text-color);
+}
+
+#small-text a {
+    color:                      var(--sm-text-link-color);
+    text-shadow:                var(--sm-text-link-drop);
+}
+
+#small-text p : first-child {
+    font-size:                  var(--sm-text-1st-size);
+    padding-top:                var(--sm-text-1st-p-top);
+}
+
+#small-photo-wrapper img {
+    height:                     var(--sm-photo-height);
+    margin-left:                var(--sm-photo-m-left);
+}
+
+p span {
+    color:                      var(--span-color);
+}
+
+p span span {
+    font-style:                 italic;
+}
+
+li {
+    display:                    block;
+}
+li img {
+    width:                      var(--li-img-width);
+}
+
+li > ul li {
+    display:                    inline;
+}
+li p {
+    float:                      right;
+    font-size:                  var(--list-text-size);
+    padding-top:                var(--list-text-p-top);
+    width:                      var(--list-text-width);
+}
+#bottom-logo {
+    position:                   absolute;
+    width:                      var(--bottom-logo-width);
+    left:                       var(--bottom-logo-left-anchor);
+    top:                        var(--bottom-logo-top-anchor);
+}
+
+#bottom-logo > #logo {
+    font-size:                  var(--bottom-logo-text-size);
+}
+#bottom-logo > #logo > p {
+    color:                      var(--secondary-color);
+}
+#bottom-logo > #logo > p:nth-child(2) {
+    color:                      var(--quaternary-color);
+}
+#bottom-logo > #logo > p:nth-child(3) {
+    top:                        -50px;
+    padding-left:               250px;
+    font-size:                  120px;
+    font-weight:                500;
+}
+
+
+#nav-bottom {
+    padding-left: 30px;
+    width: 50%;
+    margin-top: 40px;
+    background: midnightblue;
+    position: absolute;
+    top: 650px;
+    left: 43%;
+    z-index: 0;
+    box-shadow: 2px 5px 6px rgba(0,0,0,0.7);
+}
+#nav-bottom a {
+    width: auto;
+}
+#nav-bottom a div {
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 60px;
+    height: 60px;
+    background:var(--secondary-color);
+    border-radius: 50%;
+    box-shadow: -4px 4px 5px rgba(0,0,0,0.3);
+}
+#nav-bottom a div img {
+    width: 80%;
+    margin-left: 10%;
+    margin-top: 5%;
+}
+
+#nav-bottom div#bottom-text {
+    width: auto;
+    height: auto;
+    border-radius: 0px;
+    background: none;
+    box-shadow: none;
+    position: absolute;
+    top: 0px;
+    left: 20%;
+}
+#nav-bottom div#bottom-text p {
+    font-size: 36px;
+    position: absolute;
+}
+#nav-bottom div#bottom-text p:nth-child(1) {
+   top: 25px;
+}
+#nav-bottom div#bottom-text p:nth-child(2) {
+   top: 105px;
+}
+#nav-bottom div#bottom-text p:nth-child(3) {
+   top: 185px;
+}
+#nav-bottom div#bottom-text p:nth-child(4) {
+   top: 270px;
+}
+

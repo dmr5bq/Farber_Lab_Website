@@ -1,0 +1,138 @@
+/*******************************************
+** Contact page stylesheet *****************
+********************************************
+* Copyright 2016 Dominic Ritchey ***********
+* for reuse, contact dmr5bq@virginia.edu ***
+*******************************************/
+@import url('master.css');
+
+/* Contact page styles */
+#header { /* Adds a border to the header for clarity */
+    border-bottom: 1px dotted white;
+}
+#content-wrapper { /* Moves content below the header */
+    width: 100%;
+    height: auto;
+    padding-top: 130px;
+}
+h4 { /* Most text on the page is in h4 */
+    color: white;
+    font-family: 'helvetica';
+    margin: 0px;
+    font-size: 36px;
+    font-weight: 200;
+    margin-bottom: 10px;
+    padding-bottom: 15px;
+}
+/* Left half of body */
+#body-left { /* Left body half */
+    padding-right: 10%;
+    left: 0px;  
+}
+#map-box { /* Holds the embedded map */
+    padding: 30px;
+    background: var(--tertiary-color);
+    border-radius: 5px;
+    box-shadow: -8px 8px 10px rgba(0,0,0,0.9);
+    margin-left: 10%;
+    margin-top: 30px;
+}
+#img-box { /* Holds the SM logos */
+    margin-left: 10%;
+    padding: 25px;
+    background: black;
+    border-radius: 5px;
+    box-shadow: -8px 8px 10px rgba(0,0,0,0.7);
+}
+#img-box a img { /* Controls the SM logos */
+    width: 50px;
+    height: auto;
+    margin: 10px;  
+    opacity: 0.7;
+} 
+/* Right half of body */
+#body-right { /* Right half of body */
+    padding-left: 2%;
+    left: 50%;
+}
+#body-right h4{ /* Adds padding to the h4 in #body-right */
+    margin-left: 20px;
+}
+#body-right > div { /* Holds the contact form */
+    padding: 5px;
+    background: var(--highlight-text-color);
+    border-radius: 5px;
+    box-shadow: -8px 8px 10px rgba(0,0,0,0.9);
+}
+/* Form attributes */
+form {
+    /* Just to center the form on the page */
+    margin: 0 auto;
+    width: 400px;
+    /* To see the outline of the form */
+    padding: 1em;
+}
+form div + div {
+    margin-top: 1em;
+}
+label {
+    /* To make sure that all labels have the same size and are properly aligned */
+    display: inline-block;
+    width: 90px;
+    text-align: right;
+    font: var(--font);
+}
+input, textarea {
+    /* To make sure that all text fields have the same font settings
+       By default, textareas have a monospace font */
+    font: 14px var(--font);
+
+    /* To give the same size to all text field */
+    width: 300px;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    border-radius: 3px;
+    background: rgba(255,255,255,0.9);
+
+    /* To harmonize the look & feel of text field border */
+    border: 1px solid #999;
+}
+input:focus, textarea:focus {
+    /* To give a little highlight on active elements */
+    border-color: #000;
+}
+textarea {
+    /* To properly align multiline text fields with their labels */
+    vertical-align: top;
+
+    /* To give enough room to type some text */
+    height: 5em;
+
+    /* To allow users to resize any textarea vertically
+       It does not work on all browsers */
+    resize: vertical;
+}
+button {
+    /* This extra margin represent roughly the same space as the space
+       between the labels and their text fields */
+    margin-left: .5em;
+    padding: 4px;
+}
+form p {
+    font-family: var(--font);
+    color: white;
+    font-weight: 900;
+    padding-right: 10px;
+}
+/* Classes used in this file */
+.button {
+    /* To position the buttons to the same position of the text fields */
+    padding-left: 90px; /* same size as the label elements */
+}
+.body-box { /* #body-left and #body-right */
+    position: absolute;
+    top: 0px;
+    padding-top: 150px;
+    display: inline-block;
+    width: 40%;
+}

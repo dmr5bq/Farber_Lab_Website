@@ -1,0 +1,170 @@
+/*******************************************
+****** About page stylesheet ***************
+********************************************
+* Copyright 2016 Dominic Ritchey ***********
+* for reuse, contact dmr5bq@virginia.edu ***
+*******************************************/
+@import url('master.css');
+
+:root {
+    --table-width:          100%;
+    --table-img-width:      calc( var(--table-width) * 0.6 );
+    --std-padding:          30px;
+    --std-radius:           15px;
+    --bold-fw:              900;
+    --std-fw:               400;
+    --nav-std-width:        70px;
+    --nav-std-m-left:       15px;
+    --sp-nav-height:           50px;
+    --sp-nav-width:            100%;
+    --sp-nav-top-anchor:       120px;
+    --sp-nav-left-anchor:      0px;
+    --sp-nav-background:       #000;
+    --sp-nav-opacity:          0.8;
+    --sp-nav-arrow-width:      70px;
+    --sp-nav-shadow:            0px 8px 10px rgba(0,0,0,0.9);
+    --std-box-shadow:        3px 3px  5px rgba(0,0,0,0.7);
+    --std-text-shadow:      -2px 2px  3px rgba(0,0,0,0.5);
+    --std-min-text-shadow:  -1px 1px  2px rgba(0,0,0,0.4);
+    --h1-size:              55px;
+    --subhead-size:         30px;
+    --copy-size:            18px;
+    --highlight-color:      #fff;
+    --caption-p-top:        50px;
+    --caption-width:        70%;
+    --subhead-color:        #fff;
+    --img-m-left:           20%;
+    --std-td-width:         30%;
+    --copy-color:           #000;
+    --header-divider:       1px dotted white !important;
+    --header-border:        3px solid var(--highlight-text-color);
+    --std-color-gradient:   repeating-linear-gradient(
+                                    45deg,
+                                    var(--highlight-text-color)  ,
+                                    var(--quaternary-color) 1px  ,
+                                    var(--quaternary-color) 10px ,
+                                    var(--secondary-color) 1px ) ;
+}
+
+
+/****** BODY STYLES **********/
+#big-box h1 { /* Main page headers */
+    text-align:     center;
+    font-family:    var(--font2);
+    font-weight:    var(--bold-fw);
+    color:          var(--highlight-text-color);
+    padding-top:    var(--std-padding);
+    text-shadow:    var(--std-text-shadow);
+    font-size:      var(--h1-size);
+}
+#big-box td img { /* Images stored in the big-box tables */
+    width:          var(--table-img-width);
+    box-shadow:     var(--std-box-shadow);
+    border-radius:  var(--std-radius);
+    margin-left:    var(--img-m-left);
+}
+#big-box td { /* Table data stored in big-box */
+    width:          var(--table-width);
+}
+#big-box td:first-child { /* First td */
+    width:          var(--std-td-width);
+}
+#big-box tr { /* Table row stored in big-box */
+    width:          var(--table-width);
+}
+#big-box > p { /* text stored in big-box, direct children */
+    color:          var(--subhead-color);
+    background:     var(--std-color-gradient);
+    border-top:     var(--header-border);
+    border-bottom:  var(--header-border);
+    font-family:    var(--font2);
+    font-size:      var(--subhead-size);
+    padding:        var(--nav-std-m-left);
+    text-shadow:    var(--std-text-shadow);
+    font-weight:    var(--std-fw);
+}
+
+#big-box img { /* Images stored in table-data divs */
+    float:          right;
+    width:          var(--table-img-width);
+    margin:         var(--nav-std-m-left);
+    box-shadow:     var(--std-box-shadow);
+}
+#big-box td div { /* divs stored in table-data */
+    float:          left;
+    width:          50%;
+    display:        inline;
+}
+td p { /* Text stored in td blocks */
+    font-family:    var(--font2);
+    font-size:      var(--copy-size);
+    font-weight:    var(--std-fw);
+    color:          var(--highlight-text-color);
+}
+h2 { /* Secondary headings */
+    font-family:    var(--font2);
+    font-size:      var(--subhead-size);
+    padding:        var(--nav-std-m-left);
+    text-shadow:    var(--std-min-text-shadow);
+}
+#about-nav {
+    position:       fixed;
+    width:          var(--sp-nav-width);
+    height:         var(--sp-nav-height);
+    top:            var(--sp-nav-top-anchor);
+    left:           var(--sp-nav-left-anchor);
+    background:     var(--sp-nav-background);
+    opacity:        var(--sp-nav-opacity);
+    box-shadow:     var(--sp-std-box-shadow);
+}
+#about-nav ul li:first-child p:hover {
+    color:          var(--tertiary-color);
+}
+#about-nav ul li:first-child p {
+    color:          var(--tertiary-color);
+}
+#about-nav ul li:first-child {
+    width:          var(--nav-std-width);
+}
+#about-nav img {
+    width:          var(--nav-std-width);
+}
+#about-nav-arrow {
+    position:       fixed;
+    background:     var(--tertiary-color);
+    width:          var(--sp-nav-arrow-width);
+    top:            var(--sp-nav-top-anchor);
+    left:           calc(100% - var(--sp-nav-arrow-width));
+}
+#about-nav li  {
+    margin-left:    var(--nav-std-m-left);
+    display:        inline-block;
+}
+#about-nav li  p {
+    color:          var(--highlight-color);
+}
+#about-nav li  p    :  hover {
+    color:          var(--secondary-color);
+}
+#about-nav p {
+    margin:         0px;
+    font-family:    var(--font);
+    font-size:      var(--copy-size);
+}
+#header {
+    border-bottom:  var(--header-border);
+    box-shadow:     none !important;
+}
+/* Classes used by the About page */ 
+.body-text { /* Text stored in the big-box body with class .body-text*/
+    text-align:     left;
+    color:          var(--copy-color);
+    padding:        var(--copy-size);
+}
+.caption {  /*text stored in table-data divs*/
+    font-weight:    var(--bold-fw);
+    padding-top:    var(--caption-p-top);
+    font-size:      var(--copy-size);
+    width:          var(--caption-width);
+    color:          var(--copy-color);      
+}

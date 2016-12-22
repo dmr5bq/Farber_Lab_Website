@@ -1,0 +1,314 @@
+/*******************************************
+** About/Publications page stylesheet ******
+********************************************
+* Copyright 2016 Dominic Ritchey ***********
+* for reuse, contact dmr5bq@virginia.edu ***
+*******************************************/
+@import url('master.css');
+
+/*********** Publications Styles **********/
+/* Classes used by Publications */
+.header-pub {
+    box-shadow: 0px 0px 0px rgba(0,0,0,0.3) !important;
+}
+.collapse {
+    box-shadow: -3px 3px 3px rgba(0,0,0,0.3);
+    height: 60px;
+}
+
+.expand {
+    box-shadow:-3px 3px 3px rgba(0,0,0,0.3);
+    height: 60px;
+}
+
+/* Classes used by the master script */
+.collapse-hover {
+    box-shadow:-5px 5px 5px rgba(0,0,0,0.4);
+}
+.expand-hover {
+    box-shadow:-5px 5px 5px rgba(0,0,0,0.4);
+}
+
+h1 { /* Main page headers */
+    text-align: center;
+    font-family: var(--font2);
+    color: var(--highlight-text-color);
+    font-size: 55px;
+    font-weight: 900;
+    text-shadow: -1px 2px rgba(0,0,0,0.3);
+    margin: 20px;
+    padding-top: 30px;
+}
+li p { /* List-item containing text */
+    font-size: 20px;
+    font-family: var(--font);
+    width: 80%;
+    margin: 0px;
+}
+#big-box h3 { /*h3 subheader, used for Dates, e.g., "2014"*/
+    width: 50px; 
+    margin: 0px;
+    margin-top: 20px;
+    padding-left: 4%;
+    display: inline;
+}
+.doc-box { /* Holds one publication inc. link, text, journal, etc. */
+    margin-left: 10%;
+    width: 100%;
+}
+.doc-box p { /* publications text */
+    margin: 0px;
+    padding: 0px;
+    font-weight: 300;
+    font-size: 20px;
+    width: 100%;
+}
+li a p { /* publications link text */
+    color: black;
+    text-decoration: none;
+    font-family: var(--font);
+    font-size: 20px;
+}
+li { /* ALL List-data */
+     list-style: none;
+}
+p.article-name {
+    color: var(--highlight-text-color);
+}
+.date-box {
+    width: 100%;
+    margin-top: 10px;
+    border-bottom: 3px solid var(--highlight-text-color);
+    border-top: 3px solid var(--highlight-text-color);
+    box-shadow: 0px 3px 3px rgba(0,0,0,0.4);
+    background: repeating-linear-gradient(
+        45deg,
+        var(--highlight-text-color),
+        navy 1px,
+        navy 10px,
+        var(--secondary-color) 1px
+    );
+}
+.date-box div {
+    width: 100px;
+    font-family: var(--font2);
+    font-size: 35px;
+    color: white;
+    display: inline;
+    
+}
+.date-box a {
+    background: var(--highlight-text-color);
+    padding: 0px;
+    float: right;
+    border-bottom-left-radius: 5px;
+}
+#big-box .pub-arrow {
+    width: 60px;
+    height: auto;
+    display: inline;
+}
+#pub-link-box li  {
+    display: inline-block;
+    float: left;
+    margin-left: 10px;
+}
+#pub-nav li  {
+    margin-left: 5px;
+    display: inline-block;
+}
+#pub-nav li  p {
+    color: white;
+}
+#pub-nav li  p:hover {
+    color: var(--secondary-color);
+}
+#pub-nav li a  {
+    padding-bottom: 5px;
+    padding-top: 0px;
+}
+
+#pub-link-box {
+    width: 40%;
+    margin-left: 20%;
+    padding-bottom: 90px;
+}
+
+
+#pub-link-box > p {
+    font-family: var(--font);
+    font-size: 20px;
+    padding-left: 10%;
+}
+
+#collapse-all, #expand-all {
+    width: 175px;
+    height: 40px;
+    position: absolute;
+    background: var(--highlight-text-color);
+    border-radius: 10px;
+    font-family: var(--font2);
+    font-weight: 900;
+    color: white;
+    box-shadow: -3px 3px 4px rgba(0,0,0,0.4);
+    left: 57.5%;
+}
+
+#collapse-all p, #expand-all p {
+    margin-left: 20%;
+}
+
+#collapse-all {
+    top: 355px;
+}
+#expand-all {
+    top: 417px;
+}
+
+#collapse-all img, #expand-all img {
+    height: 100%;
+    float: right;
+}
+
+#first-date-box {
+    margin-top: 100px;
+}
+
+#pub-link-box li p {
+    text-align: center;
+    margin-top: 15px;
+    width: 90px;
+    background: var(--highlight-text-color);
+    color: white;
+    border-radius: 10px;
+    box-shadow: -3px 3px 4px rgba(0,0,0,0.4);
+}
+
+#pub-nav {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    top: 120px;
+    left: 0px;
+    background: #000;
+    opacity: 0.8;
+    margin: 0px;
+    box-shadow: 0px 8px 5px rgba(0,0,0,0.9);
+}
+#pub-nav ul li:first-child p:hover {
+    color: var(--tertiary-color);
+}
+#pub-nav ul li:first-child p {
+    color: var(--tertiary-color);
+}
+#pub-nav ul li:first-child {
+    width: 70px;
+}
+#second-ul {
+    width: 300px;
+    position: fixed;
+    top: 120px;
+    left: 70%;
+}
+#second-ul li {
+    padding-left: 25px;
+    width: 150px;
+}
+#second-ul li p:hover {
+    color: var(--tertiary-color);
+}
+ul#second-ul li:first-child p {
+    width: 150px;
+    color: white;
+}
+#pub-nav img {
+    width: 70px;
+}
+/*for version 2*/
+
+
+#lower-pub-nav img {
+    width: 70px;
+}
+#lower-pub-nav-arrow {
+    background: var(--tertiary-color);
+    position: fixed;
+    width: 70px;
+    top: 120px;
+    left: calc(100% - 70px);
+    border-bottom-left-radius: 10px;
+}
+
+#lower-pub-nav img {
+    width: 70px;
+}
+
+#pub-nav-arrow {
+    background: var(--tertiary-color);
+    position: fixed;
+    width: 70px;
+    top: 120px;
+    left: calc(100% - 70px);
+    border-bottom-left-radius: 10px;
+}
+#lower-pub-nav li  {
+    margin-left: 5px;
+    display: inline-block;
+}
+#lower-pub-nav li  p {
+    color: white;
+}
+#lower-pub-nav li  p:hover {
+    color: var(--tertiary-color);
+}
+#lower-pub-nav li a  {
+    padding-bottom: 5px;
+    padding-top: 0px;
+}
+#lower-pub-nav {
+    width: 100%;
+    height: 30px;
+    background: var(--highlight-text-color);
+    margin: 0px;
+    box-shadow: 0px 8px 5px rgba(0,0,0,0.7);
+    overflow: hidden;
+    margin: 0px;
+}
+#lower-pub-nav ul li:first-child p:hover {
+    color: var(--tertiary-color);
+}
+#lower-pub-nav ul li:first-child p {
+    color: var(--tertiary-color);
+}
+#lower-pub-nav ul li:first-child {
+    width: 70px;
+}
+#lower-second-ul {
+    padding: 0px;
+    margin: 0px;
+    width: 30%;
+    float: right;
+}
+#lower-second-ul li {
+    padding-left: 25px;
+    width: 150px;
+}
+#lower-second-ul li p:hover {
+    color: var(--tertiary-color);
+}
+ul#lower-second-ul li:first-child p {
+    width: 150px;
+    color: white;
+}
+#lower-pub-nav ul:first-child {
+    width: 65%;
+    margin-right: 0px;
+    padding-right: 0px;
+}
+#lower-pub-nav ul {
+    display: inline;
+}
+#v2-first-date-box {
+    margin-top: 0px;
+    border-top: 3px solid var(--quaternary-color);
+}
