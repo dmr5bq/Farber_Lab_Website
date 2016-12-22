@@ -1,0 +1,333 @@
+/*******************************************
+** Global stylesheet ***********************
+********************************************
+* Copyright 2016 Dominic Ritchey **********
+* for reuse, contact dmr5bq@virginia.edu **
+*******************************************/
+
+/* GLOBALS */
+:root {
+    
+    /*  Font Parameters */
+    --font:                 'Lato',         sans-serif;
+    --font2:                'Quicksand',    sans-serif;
+    
+     /*  Color Parameters */
+    --highlight-text-color: #364CC4;
+    --secondary-color:      #5568D0;
+    --tertiary-color:       #E59F00;
+    --quaternary-color:     #000080;
+    
+    /* Page-wide Parameters */
+    --page-background-image:url('web_bg3.jpg');
+    --page-base-layer:      0; /*set behind header*/
+    
+    /*  Body Parameters */ 
+    --body-p-bottom:        50px !important;
+    --body-m-bottom:        50px;
+    --body-background:      rgba(255,255,255, .8);
+    --body-width:           98%;
+    --body-m-left:          1%;
+    --body-m-top:           180px;
+    --body-radius:          5px;
+    --body-shadow:          -10px 10px 10px rgba(0,0,0,0.7);    
+    
+     /*  Header Parameters */
+    --header-container-height: 150px;
+    --header-container-width:  100%;
+    --header-top-anchor:    0px;
+    --header-left-anchor:   0px;
+    --header-layer:         1;
+    --header-height:        120px;
+    --header-background:    #000;
+    --header-opacity:       0.8;
+    --header-shadow:        0px 8px 5px rgba(0,0,0,0.6);
+    
+     /*  Logo Parameters */
+    --dna-left-anchor:      -50px;
+    --logo-color:           #fff;
+    --logo-height:          100px;
+    --logo-top-anchor:      25px;
+    --logo-left-anchor:     10%;
+    --logo-base-size:       3em;
+    --logo-large-size:      4.2em;
+    --logo-small-size:      2.5em;
+    --logo-p-left:          5px;
+    
+     /*  Header Img Parameters */
+    --header-img-m-right:   20px;
+    --header-img-height:    40px;
+    --header-img-m-top:     10px;
+    
+     /*  Nav Parameters */
+    --nav-text-color:       #fff;
+    --nav-text-size:        1.5em;
+    --nav-padding:          20px;
+    --nav-top-anchor:       30px;
+    --nav-left-anchor:      40%;
+    --nav-fw:               800;
+    --nav-p-left:           10px;
+    
+     /*  Footer Parameters */
+    --footer-height:        150px;
+    --footer-width:         100%;
+    --footer-opacity:       var(--header-opacity);
+    --footer-m-top:         50px;
+    --footer-left-anchor:   0px;
+    --footer-img-m-top:     80px;
+    --footer-img-m-left:    2%;
+    --footer-img-height:    50px;
+    --footer-img-m:         10px;
+    --footer-txt-left-anchor: 35px;
+    --footer-txt-color:     var(--logo-color);
+    --footer-txt-width:     10%;
+    --footer-txt-size:      2.5em;
+    --footer-txt-p-left:    10px;
+    
+     /*  Menu Parameters */
+    --menu-left:            80%;
+    --menu-background:      rgba(0,0,0,0.8) !important;
+    
+    --drop-down-width:      200px;
+    --drop-down-height:     240px;
+    --drop-down-top-anchor: 120px;
+    --drop-down-left-anchor:var(--menu-left);
+    --drop-down-background: rgba(60,60,60,0.8);
+    --drop-down-radius:     3px;
+    --drop-down-layer:      2;
+    
+    --menu-top-width:       75px;
+    --menu-top-height:      80px;
+    --menu-top-top-anchor:  40px;
+    --menu-top-left-anchor: calc(var(--menu-left) + 62.5px);
+    --menu-top-layer:       3;
+    
+    --menu-img-width:       50px;
+    --menu-img-left-anchor: calc( var(--menu-left) + 75px ) ;
+    --menu-img-top-anchor:  70px;
+    --menu-img-layer:       2;
+    
+    --menu-txt-size:        20px;
+    --menu-txt-fw:          800;
+    
+    --menu-logo-opacity:    0.9;
+    --menu-logo-left-anchor:calc(var(--menu-left) + 75px);
+    --menu-logo-top-anchor: 50px;
+    --menu-logo-width:      50px;
+    --menu-logo-height:     50px;
+    --menu-logo-layer:      4;
+    
+    --menu-logo-div-width:  100%;
+    --menu-logo-div-height: 10px;
+    --menu-logo-div-radius: 7px;
+    --menu-logo-div-background: #fff;
+    --menu-logo-div-layer:  4; 
+    --menu-logo-div-m-top:  5px;
+    
+    /* Link Parameters */
+    --link-color:           #fff;
+}
+/* Classes used in this file*/
+.opaque { /*Opacity overrides*/
+    opacity:                1.0             !important;
+}
+.menu-bg { /*Menu class*/
+    background:             var(--menu-background);
+}
+.menu-bub-highlight { /*Turns selected menu bubbles blue*/
+    background:             var(--highlight-text-color) !important;
+}
+.selected-nav { /* Highlights current page in nav */
+    color:                  var(--tertiary-color);
+}
+.hidden {
+    display:                none;
+}
+/***********************************
+******** HEADER STYLES *************
+***********************************/
+#header-container { /* Wraps header */
+    position:               fixed;
+    height:                 var(--header-container-height);
+    width:                  var(--header-container-width);
+    top:                    var(--header-top-anchor);
+    left:                   var(--header-left-anchor);
+    z-index:                var(--header-layer); /*set in front*/
+}
+#header { /* whole header*/
+    border:                 none      !important;
+    height:                 var(--header-height);
+    background:             var(--header-background);
+    opacity:                var(--header-opacity);
+    box-shadow:             var(--header-shadow);
+}
+#header > img { /* This controls the DNA img */
+    position:               fixed;
+    height:                 var(--header-height);
+    left:                   var(--dna-left-anchor);
+}
+#logo { /* Wraps all of the text in the logo */
+    position:               absolute;
+    color:                  var(--logo-color);
+    height:                 var(--logo-height);
+    top:                    var(--logo-top-anchor);
+    left:                   var(--logo-left-anchor);
+}
+#logo p { /*"The"*/  
+    display:                inline;
+    font-size:              var(--logo-base-size);
+    font-family:            var(--font2);
+    padding-left:           var(--logo-p-left);
+}
+#logo p:nth-child(2) { /*"Farber"*/ 
+    color:                  var(--highlight-text-color);
+    font-size:              var(--logo-large-size);
+}
+#logo p:nth-child(3) { /*"Lab"*/ 
+   font-size:               var(--logo-small-size);
+}
+#header-img-box { /* CPHG and SOM img wrapper*/
+    float:                  right;
+}
+#header-img-box img { /* CPHG and SOM img */
+    display:                block;
+    height:                 var(--header-img-height);
+    margin-right:           var(--header-img-m-right);
+}
+#header-img-box img:first-child { /* SOM img */
+    margin-top:             var(--header-img-m-top);
+}
+#nav { /* Navigation menu */
+    position:               fixed;
+    color:                  var(--nav-text-color);
+    font-family:            var(--font);
+    font-size:              var(--nav-text-size);
+    padding:                var(--nav-padding);
+    top:                    var(--nav-top-anchor);
+    left:                   var(--nav-left-anchor);
+}
+#nav a {
+    display:                inline-block;
+}
+#nav p { /* Nav menu text links */
+    text-decoration:        none;
+    padding-left:           var(--nav-p-left);
+    font-weight:            var(--nav-fw);
+}
+#nav p.selected-nav : hover { /* Highlights current page in nav */
+    color:                  var(--tertiary-color);
+}
+#nav p:hover { /* Nav menu text links on hover */
+    color:                  var(--highlight-text-color);
+    font-weight:            var(--nav-fw);
+}
+/***********************************
+******** FOOTER STYLES *************
+***********************************/
+#footer { /*Black nav footer at the bottom of the page*/
+    position:               absolute;
+    height:                 var(--footer-height);
+    width:                  var(--footer-width);
+    background:             var(--header-background);
+    opacity:                var(--footer-opacity);
+    margin-top:             var(--footer-m-top);
+    left:                   var(--footer-left-anchor);
+}
+#footer-img-wrapper { /*holds all of the img logos*/
+    margin-top:             var(--footer-img-m-top);
+    margin-left:            var(--footer-img-m-left);
+}
+#footer-img-wrapper img { /*controls the img logos*/
+    height:                 var(--footer-img-height);
+    margin:                 var(--footer-img-m);
+}
+#footer p { /*"Connect" in the footer*/
+    display:                inline;
+    position:               absolute;
+    left:                   var(--footer-txt-left-anchor);
+    color:                  var(--footer-txt-color);
+    font-size:              var(--footer-txt-size);
+    font-family:            var(--font);
+    padding-left:           var(--footer-txt-p-left);
+    width:                  var(--footer-txt-width);
+}
+
+/*`**`***`***`***`***`***`***`***`***`***`***`
+*`***`***`* MENU STYLES  `***`***`***`***`***`
+*`***`***`***`***`***`***`***`***`***`***`**`*/
+.drop-down {
+    position:               fixed;
+    width:                  var(--drop-down-width);
+    height:                 var(--drop-down-height);
+    top:                    var(--drop-down-top-anchor);
+    background:             var(--drop-down-background);
+    left:                   var(--menu-left);
+    border-radius:          var(--drop-down-radius);
+    z-index:                var(--drop-down-layer);
+}
+#menu-top {
+    position:               fixed;
+    width:                  var(--menu-top-width);
+    height:                 var(--menu-top-height);
+    top:                    var(--menu-top-top-anchor);
+    left:                   var(--menu-top-left-anchor);
+    z-index:                var(--menu-top-layer);
+}
+#menu img {
+    position:               fixed;
+    width:                  var(--menu-img-width);
+    left:                   var(--menu-img-left-anchor);
+    top:                    var(--menu-img-top-anchor);
+    z-index:                var(--menu-img-layer);
+}
+#menu a {
+    text-decoration:        none;
+    text-align:             center;
+    font-family:            var(--font);
+    font-size:              var(--menu-txt-size);
+    font-weight:            var(--menu-txt-fw);
+}
+#menu a : hover{
+    color:                  var(--highlight-text-color);
+}
+#total-wrapper {
+    overflow:               hidden;
+}
+#menu-logo {
+    position:               fixed;   
+    opacity:                var(--menu-logo-opacity);
+    left:                   var(--menu-logo-left-anchor);
+    top:                    var(--menu-logo-top-anchor);
+    width:                  var(--menu-logo-width);
+    height:                 var(--menu-logo-height);
+    z-index:                var(--menu-logo-layer);
+}
+#menu-logo div {
+    width:                  var(--menu-logo-div-width);
+    height:                 var(--menu-logo-div-height);
+    border-radius:          var(--menu-logo-div-radius);
+    background:             var(--menu-logo-div-background);
+    z-index:                var(--menu-logo-div-layer); 
+    margin-top:             var(--menu-logo-div-m-top);
+}
+/***********************************
+******** BODY STYLES ***************
+***********************************/
+#big-box {
+    padding-bottom:         var(--body-p-bottom);
+    margin-bottom:          var(--body-m-bottom);
+    background:             var(--body-background);
+    width:                  var(--body-width);
+    margin-left:            var(--body-m-left);
+    margin-top:             var(--body-m-top);
+    border-radius:          var(--body-radius);
+    box-shadow:             var(--body-shadow);
+}
+a { /* Prevents link blueing */
+    text-decoration:        none;
+    color:                  var(--link-color);
+}
+body {
+    background-image:       url(web_bg3.jpg);
+    z-index:                var(--page-base-layer); /*set behind header*/
+}  
