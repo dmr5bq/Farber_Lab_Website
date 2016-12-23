@@ -1,5 +1,11 @@
 <!DOCTYPE html>
-
+<html>
+<!--
+*** PLEASE READ ***
+Copyright 2016, Dominic Ritchey
+Please do not re-use without express permission of the developer.
+Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virginia.edu.
+-->
 <?php
 
     require_once "../data.php";
@@ -9,19 +15,28 @@
     if (isset($_POST['name'])) {
         $mailer = new PHPMailer();
 
-        
+        init_mailer($mailer);
 
+        $mailer->addAddress('dmr5bq@virginia.edu');
+        $sender = strip_tags($mailer->Username);
+        $recipient = 'dmr5bq@virginia.edu';
+        $subject = strip_tags($_POST['subject']);
+
+
+        // TODO: NEED AN EMAIL BODY GENERATION METHOD
+
+
+        $msg = $_POST['msg'];
+        // Put information into the message
+        $mailer->addAddress($recipient);
+        $mailer->SetFrom($sender);
+        $mailer->Subject = "$subject";
+        $mailer->Body = "$msg";
+        $mailer->send()
+        or die($mailer->ErrorInfo);
     }
 
 ?>
-
-<html>
-<!--  
-*** PLEASE READ ***
-Copyright 2016, Dominic Ritchey
-Please do not re-use without express permission of the developer.
-Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virginia.edu. 
--->  
     <head>
         <title>Farber Lab - Contact</title>
         
@@ -33,7 +48,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
 
         ?>
     </head>
-    <body>
+    <body onload="load_background('contact')">
         <div id="total-wrapper">
 
           <?php generate_header('contact') ?>
@@ -42,9 +57,9 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                 <div id="body-left" class="body-box">
                     <div id="img-box">
                         <h4>Want to know more? Connect with us here.</h4>
-                        <a href="#"><img src="fb_button.png"></a>
-                        <a href="#"><img src="twitter_button.png"></a>
-                        <a href="#"><img src="linkedin_button.png"></a>
+                        <a href="#"><img src="../assets/fb_button.png"></a>
+                        <a href="#"><img src="../assets/twitter_button.png"></a>
+                        <a href="#"><img src="../assets/linkedin_button.png"></a>
                     </div> <!-- /img-box -->
                     <div id='map-box'>
                         <h4>Paying a visit? Find us here.</h4>
@@ -54,7 +69,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                 <div id="body-right" class="body-box">
                     <div>
                         <h4>Have a question for us?</h4>
-                        <form action="../contact/" method="post" enctype="text/plain">
+                        <form action="../contact/" method="post">
                             <div>
                                 <label for="name"><p>Name:</p></label>
                                 <input type="text" id="name" name="name" required/>
@@ -69,7 +84,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                             </div> <!-- /form row 2 -->
                             <div>
                                 <label for="msg"><p>Message:</p></label>
-                                <textarea id="msg" name="msg">Enter your questions, comments, or concerns.</textarea>
+                                <textarea id="msg" name="msg" placeholder="Enter your questions, comments, or concerns."></textarea>
                             </div> <!-- /form row 3 -->
                             <button type="submit">Send Email</button>
                         </form> <!-- /form -->
@@ -80,3 +95,19 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
     </body>
 </html>
 <!-- All images are open-source / labeled for reuse -->
+
+<?php
+
+function init_mailer($mailer)
+{
+    $mailer->IsSMTP(); // telling the class to use SMTP
+    $mailer->SMTPAuth = true; // enable SMTP authentication
+    $mailer->SMTPSecure = "tls"; // sets tls authentication
+    $mailer->Host = "smtp.gmail.com"; // sets GMAIL as the SMTP server; or your email service
+    $mailer->Port = 587; // set the SMTP port for GMAIL server; or your email server port
+    $mailer->Username = "cs4640homework2@gmail.com"; // email username
+    $mailer->Password = "8782Dom!!"; // email password
+}
+
+
+?>
