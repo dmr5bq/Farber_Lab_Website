@@ -19,8 +19,8 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
 
         <?php
 
-        get_style_link('about');
-        get_script_link();
+        print_style_link('projects');
+        print_script_link('projects');
 
         ?>
         

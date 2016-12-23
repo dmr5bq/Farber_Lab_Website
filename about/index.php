@@ -3,7 +3,7 @@
 <?php
 
     require_once "../data.php";
-
+    require_once "../display_injector.php";
 ?>
 
 <html>
@@ -17,63 +17,20 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
 
         <?php
 
-            get_style_link('about');
-            get_script_link();
-
+            print_style_link('about');
+            print_script_link('about');
+            print_meta_info();
         ?>
 
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="Farber Lab - Center for Public Health Genomics">
-        
-        
-         <!-- jQuery link MUST come first --> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="master.js"></script>
     </head>
-    <body>
-       <div id="header-container" name='top'>
-            <div id="header">
-                <img src="DNA_white.jpg">
-                <a href="index.html">
-                    <div id="logo">
-                        <p>The</p>
-                        <p><strong>Farber</strong></p>
-                        <p>Lab</p>
-                    </div> <!-- logo -->
-                </a> 
-                <div id="nav">
-                    <a href="index.html"><p>HOME</p></a>
-                    <a href="javascript:void(0);"><p class="selected-nav">ABOUT</p></a>
-                    <a href="People.html"><p>PEOPLE</p></a>
-                    <a href="Publications.html"><p>PUBLICATIONS</p></a>
-                    <a href="Contact.html"><p>CONTACT</p></a>
-                </div> <!-- nav -->
-                <div id="header-img-box">
-                    <a href="https://med.virginia.edu/" class="header-logo"><img src="medicine_white.gif"></a>
-                    <a href="http://cphg.virginia.edu/" class="header-logo"><img src="cphglogowhite.gif"></a>
-                </div> <!-- header-img-box -->
-            </div> <!-- header -->
-        </div> <!-- header-container -->
-        <div id="menu" class="hidden">
-            <a href="javascript:void(0)">
-                <div id="menu-top">
-                     <div id="menu-logo">
-                        <div></div> <!-- top logo bar -->
-                        <div></div> <!-- middle logo bar -->
-                        <div></div> <!-- low logo bar -->
-                    </div> <!-- menu-logo -->
-                </div> <!-- menu-top -->
-            </a>
-            <div class="drop-down">
-                <a href="#" ><p>HOME</p></a>
-                <a href="#" ><p class="selected-nav">ABOUT</p></a>
-                <a href="#" ><p>PEOPLE</p></a>
-                <a href="#" ><p>PUBLICATIONS</p></a>
-                <a href="#" ><p>CONTACT</p></a>
-            </div> <!-- drop-down -->
-        </div> <!-- menu -->
-             <div id='about-nav'>
+    <body onload="load_background('about')">
+
+            <?php generate_header('about'); ?>
+
+            <div id='about-nav'>
                 <ul>    
                     <li>
                         <p>Go to:</p>
@@ -95,9 +52,10 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                     </li>
                 </ul>
                 <a id="about-nav-arrow" href='#top'>
-                    <img src="arrow-collapse.png">
+                    <img src="../assets/arrow-collapse.png">
                 </a>
-            </div><!--/pub-nav-->
+            </div><!--/about-nav-->
+
         <a href='javascript:void(0);' name='approach'></a><!--Used for page jumps-->
         <div id="big-box">
             <h1>About Our Lab</h1>
@@ -105,7 +63,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                 <a href='javascript:void(0);' name='what'></a> <!--Used for page jumps-->
                 <table>
                     <tr>
-                        <td><img src="system_gen.png"></td>
+                        <td><img src="../assets/system_gen.png"></td>
                         <td><h2>Systems Genetics of Complex Skeletal Phenotypes</h2>
                             <p class="body-text">Systems genetics seeks to understand how genetic information is integrated, organized and transmitted through cellular networks to impact cellular function/behavior. Much of our work in the lab uses systems genetics approaches that integrate genetic and transcriptome data to identify individual genes and gene networks influencing complex skeletal phenotypes. </p></td>
                     </tr> <!-- row 0 --> 
@@ -119,7 +77,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                     <tr>
                         <td>
                             <div>
-                                <img src="cphg_sys.jpg">
+                                <img src="../assets/cphg_sys.jpg">
                             </div><!-- left of td -->
                             <div>
                                 <p class="caption">Figure 1 (left). Disease-associated genetic variation elicits its influence by perturbing biological components and their interactions. Systems genetics can be used to identify these perturbations, and the genes and networks involved, and the mechanisms through which they lead to disease. (Copyright, <em>University of Virginia Center for Publich Health Genomics</em>)</p>
@@ -136,7 +94,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                 <table>
                     <tr>
                         <td>
-                            <img src="about_1.png">
+                            <img src="../assets/about_1.png">
                         </td>
                         <td> 
                             <h2>
@@ -149,7 +107,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                     </tr> <!-- row 0 --> 
                     <tr>
                         <td>
-                            <img src="bicc1.png">
+                            <img src="../assets/bicc1.png">
                         </td>
                         <td>
                             <h2>
@@ -162,7 +120,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                     </tr> <!-- row 1 --> 
                      <tr>
                         <td>
-                            <img src="coe.png">
+                            <img src="../assets/coe.png">
                         </td>
                         <td>
                             <h2>
@@ -176,16 +134,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                 </table> <!-- table 2 --> 
             </div>   <!-- big-box -->
         <!--FOOTER CODE-->
-        <div id="footer"> 
-            <p><strong>CONNECT</strong></p>
-            <div id="footer-img-wrapper">
-                <a href="http://facebook.com"><img src="fb_button.png"></a>
-                <a href="http://linkedin.com"><img src="linkedin_button.png"></a>
-                <a href="http://twitter.com"><img src="twitter_button.png"></a>
-                <a href="tel:4342435946"><img src="phone.svg"></a> 
-                <a href="mailto:crf2s@virginia.edu"><img src="email.svg"></a>
-            </div> <!-- footer-img-wrapper --> 
-        </div> <!-- footer -->
+        <?php generate_footer('about') ?>
     </body>
 </html>
 

@@ -22,7 +22,7 @@
     --senary-color:         #000;
     
     /* Page-wide Parameters */
-    --page-background-image:url('../assets/web_bg3.jpg');
+    --page-background-image: url('/assets/web_bg3.jpg');
     --page-base-layer:      0; /*set behind header*/
     
     /*  Body Parameters */ 
@@ -331,6 +331,5 @@ a { /* Prevents link blueing */
     color:                  var(--link-color);
 }
 body {
-    background-image:       url(web_bg3.jpg);
     z-index:                var(--page-base-layer); /*set behind header*/
 }  

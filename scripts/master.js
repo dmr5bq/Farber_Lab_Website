@@ -8,8 +8,9 @@ Dynamic resizing: especially for publications
 
 $(document).ready(function () {
     // Universal script
-    // Load page based on current width
+
     "use strict";
+
     if ($(window).width() < 1400) {
         $('.header-logo').addClass('hidden');
         $('#collapse-all, #expand-all').addClass('hidden');
@@ -322,7 +323,7 @@ $(window).on({ // Handles nav on width change
 
 $(window).scroll(function () {
     "use strict";
-    var height = $(window).scrollTop();
+    var height = $(window).scrollTop;
 
     if (height  > 450) {
         $('#pub-nav').removeClass('hidden');
@@ -335,3 +336,13 @@ $(window).scroll(function () {
     }
 });
 
+
+function load_background(section) {
+    if (section != undefined && section != null) {
+        if (section == 'home') {
+            $('body').css('background-image', 'url(\'assets/web_bg3.jpg\')');
+        } else {
+            $('body').css('background-image', 'url(\'../assets/web_bg3.jpg\')');
+        }
+    }
+}

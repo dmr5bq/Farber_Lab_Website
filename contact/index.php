@@ -1,4 +1,20 @@
 <!DOCTYPE html>
+
+<?php
+
+    require_once "../data.php";
+    require_once "../display_injector.php";
+    require_once "../scripts/PHPMailer/PHPMailerAutoload.php";
+
+    if (isset($_POST['name'])) {
+        $mailer = new PHPMailer();
+
+        
+
+    }
+
+?>
+
 <html>
 <!--  
 *** PLEASE READ ***
@@ -9,62 +25,19 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
     <head>
         <title>Farber Lab - Contact</title>
         
-        <link rel="stylesheet" href="contact.css">
-        <link rel="stylesheet" href="master.css">
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'>
-        
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="Farber Lab - Center for Public Health Genomics">
-        
-        <!-- jQuery link MUST come first --> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-        <script src="master.js"></script>
+        <?php
+
+        print_style_link('contact');
+        print_script_link('contact');
+        print_meta_info();
+
+        ?>
     </head>
     <body>
         <div id="total-wrapper">
-           <div id="header-container">
-                <div id="header">
-                    <img src="DNA_white.jpg">
-                    <a href="index.html">
-                        <div id="logo">
-                            <p>The</p>
-                            <p><strong>Farber</strong></p>
-                            <p>Lab</p>
-                        </div> <!-- logo -->
-                    </a> 
-                    <div id="nav">
-                        <a href="index.html"><p>HOME</p></a>
-                        <a href="About.html"><p>ABOUT</p></a>
-                        <a href="People.html"><p>PEOPLE</p></a>
-                        <a href="Publications.html"><p>PUBLICATIONS</p></a>
-                        <a href="javascript:void(0);"><p class="selected-nav">CONTACT</p></a>
-                    </div> <!-- /nav -->
-                    <div id="header-img-box">
-                        <a href="https://med.virginia.edu/" class="header-logo"><img src="medicine_white.gif"></a>
-                        <a href="http://cphg.virginia.edu/" class="header-logo"><img src="cphglogowhite.gif"></a>
-                    </div> <!-- /header-img-box -->
-                </div> <!-- /header -->
-            </div> <!-- /header-container -->
-            <div id="menu" class="hidden">
-                <a href="javascript:void(0)">
-                    <div id="menu-top">
-                         <div id="menu-logo">
-                            <div></div> <!-- /top logo bar -->
-                            <div></div> <!-- /middle logo bar -->
-                            <div></div> <!-- /low logo bar -->
-                        </div> <!-- /menu-logo -->
-                    </div> <!-- /menu-top -->
-                </a>
-                <div class="drop-down">
-                    <a href="#" ><p>HOME</p></a>
-                    <a href="#" ><p>ABOUT</p></a>
-                    <a href="#" ><p>PEOPLE</p></a>
-                    <a href="#" ><p>PUBLICATIONS</p></a>
-                    <a href="#" ><p class="selected-nav">CONTACT</p></a>
-                </div> <!-- /drop-down -->
-            </div> <!-- /menu -->
+
+          <?php generate_header('contact') ?>
+
             <div id="content-wrapper">
                 <div id="body-left" class="body-box">
                     <div id="img-box">
@@ -81,22 +54,22 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                 <div id="body-right" class="body-box">
                     <div>
                         <h4>Have a question for us?</h4>
-                        <form action="form-to-email.php" method="post" enctype="text/plain">
+                        <form action="../contact/" method="post" enctype="text/plain">
                             <div>
                                 <label for="name"><p>Name:</p></label>
-                                <input type="text" id="name" />
+                                <input type="text" id="name" name="name" required/>
                             </div> <!-- /form row 0 -->
                             <div>
-                                <label for="mail"><p>Email:</p></label>
-                                <input type="email" id="mail" />
+                                <label for="email"><p>Email:</p></label>
+                                <input type="email" id="email" name="email" required/>
                             </div> <!-- /form row 1 -->
                             <div>
                                 <label for="mail"><p>Subject:</p></label>
-                                <input type="subject" id="subject"/>
+                                <input type="subject" id="subject" name="subject" required/>
                             </div> <!-- /form row 2 -->
                             <div>
                                 <label for="msg"><p>Message:</p></label>
-                                <textarea id="msg">Enter your questions, comments, or concerns.</textarea>
+                                <textarea id="msg" name="msg">Enter your questions, comments, or concerns.</textarea>
                             </div> <!-- /form row 3 -->
                             <button type="submit">Send Email</button>
                         </form> <!-- /form -->
