@@ -25,7 +25,6 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
 
         // TODO: NEED AN EMAIL BODY GENERATION METHOD
 
-
         $msg = $_POST['msg'];
         // Put information into the message
         $mailer->addAddress($recipient);
