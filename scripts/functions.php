@@ -32,3 +32,28 @@ function fetch_all_team_members() {
     return $output;
 
 }
+
+function fetch_all_alumni() {
+
+    $db_root = Settings::$db_root;
+    $db_user = Settings::$db_user;
+    $db_pass = Settings::$db_pass;
+    $db_name = Settings::$db_name;
+
+    $database = new mysqli($db_root, $db_user, $db_pass, $db_name);
+
+    $result = $database->query("
+        
+        SELECT * FROM Alumni ORDER BY `last`;
+        
+    ");
+
+    $output = array();
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $output[] = $row;
+    }
+
+    return $output;
+
+}

@@ -24,7 +24,8 @@ $database = new mysqli($db_root, $db_user, $db_pass, $db_name);
 
 build_tables($database);
 
-initialize_team_members($database, 'data/tm_init.txt');
+initialize_team_members('data/tm_init.txt');
+initialize_alumni('data/alum_init.txt');
 
 
 function reset_database($database_root, $db_name) {
@@ -60,7 +61,7 @@ function build_tables($database) {
     or die($database->error);
 }
 
-function initialize_team_members($database, $data_filename) {
+function initialize_team_members($data_filename) {
 
     $file_str = file_get_contents($data_filename);
 
@@ -84,4 +85,28 @@ function initialize_team_members($database, $data_filename) {
 
     endforeach;
 
+}
+
+function initialize_alumni($data_filename) {
+    $file_str = file_get_contents($data_filename);
+
+    $row_array = explode("/\n", $file_str);
+
+    $tm_array = array();
+
+    foreach ($row_array as $row):
+
+        $new_row = explode(':', $row);
+
+        $tm_array[] = $new_row;
+
+    endforeach;
+
+    foreach ($tm_array as $a_row):
+
+        $al = Alumni::create_alumni($a_row[0], $a_row[1], $a_row[2], $a_row[3]);
+
+        $al->store();
+
+    endforeach;
 }

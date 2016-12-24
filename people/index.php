@@ -6,6 +6,7 @@
     require_once "../data.php";
     require_once "../display_injector.php";
     require_once "../scripts/TeamMember.php";
+    require_once "../scripts/Alumni.php";
     require_once "../scripts/functions.php";
 
 ?>
@@ -156,120 +157,20 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                     </div><!-- /lower-pub-nav -->
                 </div><!-- /people-selector -->
                 <div id='photo-wrapper' class='people-without-photos'>
-                    <div class='person-box ug'>
-                        <div class='person-text'>
-                            <p> Katherine Dickinson </p>
-                            <p> Undergraduate Researcher </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box ug'>
-                        <div class='person-text'>
-                            <p> Deepannita Hossain </p>
-                            <p> Undergraduate Researcher </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box gr'>
-                        <div class='person-text'>
-                            <p> Archilleas Pitsillides</p>
-                            <p> Postdoctoral Fellow </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box gr'>
-                        <div class='person-text'>
-                            <p> Brianne Ray</p>
-                            <p> Postdoctoral Fellow </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                      <div class='person-box gr'>
-                        <div class='person-text'>
-                            <p> Samrat Mandal</p>
-                            <p> Rotational Student Researcher </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box gr'>
-                    <div class='person-text'>
-                            <p>Will Chronister</p>
-                            <p> Rotational Student Researcher </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box gr'>
-                    <div class='person-text'>
-                            <p>Annoush Anderson</p>
-                            <p> Rotational Student Researcher </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box gr'>
-                    <div class='person-text'>
-                            <p>Kyree Thomas</p>
-                            <p> SRRP Student </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box gr'>
-                        <div class='person-text'>
-                            <p>Caitlin Cook</p>
-                            <p> Medical Student Summer Intern </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box ug'>
-                        <div class='person-text'>
-                            <p>Daniel Yu</p>
-                            <p> Undergraduate Researcher (Chemistry) </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box ug'>
-                        <div class='person-text'>
-                            <p>Jennie Swain</p>
-                            <p> Undergraduate Researcher (Chemistry) </p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box gr'>
-                        <div class='person-text'>
-                            <p>Greg Hong</p>
-                            <p>Medical Student Summer Intern</p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box --> 
-                    <div class='person-box ug'>
-                        <div class='person-text'>
-                            <p>Eric Lum</p>
-                            <p>Undergraduate Researcher</p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box --> 
-                    <div class='person-box ug'>
-                        <div class='person-text'>
-                            <p>Rachel Madenjian</p>
-                            <p>Undergraduate Researcher</p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box --> 
-                    <div class='person-box ug'>
-                        <div class='person-text'>
-                            <p>Ellie Balakhanlou</p>
-                            <p>Undergraduate Researcher</p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box --> 
-                    <div class='person-box ug'>
-                        <div class='person-text'>
-                            <p>Peter Phau</p>
-                            <p>Undergraduate Researcher</p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box gr'>
-                        <div class='person-text'>
-                            <p>Stephen R. Williams</p>
-                            <p>Postdoctoral Fellow</p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box ug'>
-                        <div class='person-text'>
-                            <p>Vikram Bhasin</p>
-                            <p>Undergraduate Researcher (Computer Science)</p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box ug'>
-                        <div class='person-text'>
-                            <p>Keven Nguyen</p>
-                            <p>Undergraduate Researcher (Biology)</p>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
+
+                <?php
+
+                $all_alums = fetch_all_alumni();
+
+                foreach ($all_alums as $alum) {
+
+                    $alum_obj = Alumni::create_alumni($alum['first'], $alum['last'], $alum['title'], $alum['category']);
+
+                    $alum_obj->generate_display();
+                }
+
+                ?>
+
                 </div><!-- /photo-wrapper -->
             </div><!-- /big-box -->
         <!--FOOTER CODE-->

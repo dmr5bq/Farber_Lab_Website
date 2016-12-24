@@ -1,0 +1,19 @@
+Katherine:Dickinson:Undergraduate Researcher:ug/
+Deepannita:Hossain:Undergraduate Researcher:ug/
+Archilleas:Pitsillides:Postdoctoral Fellow:gr/
+Brianne:Ray:Postdoctoral Fellow:gr/
+Samrat:Mandal:Rotational Student Researcher:gr/
+Will:Chronister:Rotational Student Researcher:gr/
+Annoush:Anderson:Rotational Student Researcher:gr/
+Kyree:Thomas:SRRP Student:gr/
+Caitlin:Cook:Medical Student Summer Intern:gr/
+Daniel:Yu:Undergraduate Researcher (Chemistry):ug/
+Jennie:Swain:Undergraduate Researcher (Chemistry):ug/
+Greg:Hong:Medical Student Summer Intern:gr/
+Eric:Lum:Undergraduate Researcher:ug/
+Rachel:Madenjian:Undergraduate Researcher:ug/
+Ellie:Balakhanlou:Undergraduate Researcher:ug/
+Peter:Phau:Undergraduate Researcher:ug/
+Stephen:Williams:Postdoctoral Fellow:gr/
+Vikram:Bhasin:Undergraduate Researcher (Computer Science):ug/
+Keven:Nguyen:Undergraduate Researcher (Biology):ug

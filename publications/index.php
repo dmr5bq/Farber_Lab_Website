@@ -1,4 +1,11 @@
 <!DOCTYPE html>
+
+<?php
+
+    require_once "../data.php";
+    require_once "../display_injector.php";
+
+?>
 <!--  
 *** PLEASE READ ***
 Copyright 2016, Dominic Ritchey
@@ -19,66 +26,23 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
 -->   
 <html>
     <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        
         <title>Farber Lab - Publications</title>
-        <meta name="description" content="Farber Lab - Center for Public Health Genomics">
-        <link rel="stylesheet" href="publications.css"> <!-- Publications stylesheet -->
-        
-        <link rel="stylesheet" href="master.css">
-        <link href='https://fonts.googleapis.com/css?family=Lato' rel='stylesheet' type='text/css'> <!-- font -->
-        <link href='https://fonts.googleapis.com/css?family=Quicksand' rel='stylesheet' type='text/css'> <!-- font2 -->
-        
-         <!-- jQuery link MUST come first --> 
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script> <!-- jQuery -->
-        <script src="master.js"></script><!-- JS/jQuery -->
+    <?php
+
+        print_style_link('publications');
+        print_script_link('publications');
+        print_meta_info();
+
+    ?>
+
     </head>
-    <body>
-        <div id="total-wrapper" name='top'>
-            <div id="header-container">
-                <div id="header">
-                    <img src="DNA_white.jpg" >
-                    <a href="index.html">
-                        <div id="logo">
-                            <p>The</p>
-                            <p><strong>Farber</strong></p>
-                            <p>Lab</p>
-                        </div><!--/logo-->
-                    </a>
-                    <div id="nav">
-                        <a href="index.html"><p>HOME</p></a>
-                        <a href="About.html"><p>ABOUT</p></a>
-                        <a href="People.html"><p>PEOPLE</p></a>
-                        <a href="javascript:void(0);">
-                            <p class="selected-nav">PUBLICATIONS</p>
-                        </a>
-                        <a href="Contact.html"><p>CONTACT</p></a>
-                    </div><!-- /nav -->
-                    <div id="header-img-box">
-                        <a href="https://med.virginia.edu/" class="header-logo"><img src="medicine_white.gif"></a>
-                        <a href="http://cphg.virginia.edu/" class="header-logo"><img src="cphglogowhite.gif"></a>
-                    </div><!-- /header-img-box -->
-                </div><!-- /header --> 
-            </div><!-- /header-container -->
-            <div id="menu" class="hidden">
-                <a href="javascript:void(0)">
-                    <div id="menu-top">
-                         <div id="menu-logo">
-                            <div></div> <!--/top-bar-->
-                            <div></div> <!--/middle-bar-->
-                            <div></div> <!--/bottom-bar-->
-                        </div> <!--/menu-logo-->
-                    </div> <!--/menu-top-->
-                </a>
-                <div class="drop-down">
-                    <a href="#"><p>HOME</p></a>
-                    <a href="#"><p>ABOUT</p></a>
-                    <a href="#"><p>PEOPLE</p></a>
-                    <a href="#"><p class="selected-nav">PUBLICATIONS</p></a>
-                    <a href="#"><p>CONTACT</p></a>
-                </div><!-- /drop-down -->
-            </div><!-- /menu -->
+    <body onload="load_background('publications')">
+            <?php
+
+                generate_header('publications');
+
+            ?>
+
             <div id='pub-nav' class='hidden'>
                 <ul>    
                     <li>
@@ -158,7 +122,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                     </li>
                 </ul>
                 <a id="pub-nav-arrow" href='#top'>
-                    <img src="arrow-collapse.png">
+                    <img src="../assets/arrow-collapse.png">
                 </a>
             </div><!--/pub-nav-->
             <div id="big-box">
@@ -249,10 +213,10 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                         </div><!-- /date-box div -->
                         <div>
                             <a href=javascript:void(0); id="2014-collapse" class='collapse'>
-                                <img src="arrow-collapse.png" class="pub-arrow">
+                                <img src="../assets/arrow-collapse.png" class="pub-arrow">
                             </a>
                             <a href=javascript:void(0); id="2014-expand" class="hidden expand">
-                                <img src="arrow-expand.png" class="pub-arrow">
+                                <img src="../assets/arrow-expand.png" class="pub-arrow">
                             </a>
                         </div> <!-- /date-box div -->
                     </div> <!-- /date-box -->
@@ -871,27 +835,11 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                     </ul>
                 </div><!--/date-box-wrapper-->
             </div><!--/big-box-->
-            <div id="footer"> 
-                <p><strong>CONNECT</strong></p>
-                <div id="footer-img-wrapper">
-                    <a href="http://facebook.com">
-                        <img src="fb_button.png">
-                    </a>
-                    <a href="http://linkedin.com">
-                        <img src="linkedin_button.png">
-                    </a>
-                    <a href="http://twitter.com">
-                        <img src="twitter_button.png">
-                    </a>
-                    <a href="tel:4342435946">
-                        <img src="phone.svg">
-                    </a>
-                    <a href="mailto:crf2s@virginia.edu">
-                        <img src="email.svg">
-                    </a>
-                </div><!-- /footer-img-wrapper -->
-            </div><!-- /footer -->
-        </div><!-- /total-wrapper -->
+            <?php
+
+                 generate_footer('publications');
+
+            ?>
     </body>
 </html>
 <!-- All images are open-source / labeled for reuse -->

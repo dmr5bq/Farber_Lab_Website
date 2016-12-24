@@ -97,7 +97,7 @@ class Alumni implements Model
 
         $database->query("
         
-            INSERT INTO TeamMembers 
+            INSERT INTO Alumni
             (first, last, title, category)
             VALUES
             ('$loc_first', '$loc_last', '$loc_title', '$loc_category');
