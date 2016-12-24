@@ -5,6 +5,7 @@
 
     require_once "../data.php";
     require_once "../display_injector.php";
+    require_once "../scripts/Admin.php";
 
 ?>
 
@@ -14,10 +15,7 @@
 Copyright 2016, Dominic Ritchey
 Please do not re-use without express permission of the developer.
 Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virginia.edu. -->  
-    
-    
-    <!-- TO DO:
-        Fix script to separate button controls. Don't want Alumni to control Team and vice versa.            -->
+
     <head>
         <title>Farber Lab - People</title>
 
@@ -376,7 +374,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
             </div><!-- /big-box -->
         <!--FOOTER CODE-->
        <?php
-            generate_footer('people')
+            generate_footer('people');
        ?>
     </body>
 </html>
