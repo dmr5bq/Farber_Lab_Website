@@ -1,5 +1,6 @@
 <?php
 
+//require_once "../Settings.php";
 require_once "Model.php";
 
 class Alumni implements Model
@@ -10,7 +11,7 @@ class Alumni implements Model
     private $title;
     private $category;
 
-    public static function create_alumni($first, $last, $email="not defined", $category="ug", $title="not defined", $has_image=false) {
+    public static function create_alumni($first, $last, $title="not defined", $category='') {
         $output = new Alumni();
 
         $output->first = $first;
@@ -19,6 +20,10 @@ class Alumni implements Model
         $output->category = $category;
 
         return $output;
+    }
+
+    public function toString() {
+        return "[Alumni: " . $this->first . " , " . $this->last . " ]";
     }
 
     public function generate_display() {

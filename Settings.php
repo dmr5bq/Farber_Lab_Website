@@ -1,11 +1,5 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: student
- * Date: 12/23/16
- * Time: 12:12 PM
- */
 class Settings
 {
     public static $db_root = 'localhost';

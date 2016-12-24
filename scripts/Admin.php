@@ -1,13 +1,9 @@
 <?php
 
-require_once "../Settings.php";
+//require_once "../Settings.php";
 require_once "Model.php";
-/**
- * Created by PhpStorm.
- * User: student
- * Date: 12/23/16
- * Time: 4:19 PM
- */
+
+
 class Admin implements Model
 {
 
@@ -126,13 +122,13 @@ class Admin implements Model
 
     private function _is_valid() {
         return
-            $this->first != null && $this->first !== ""
+            $this->first != null    &&  $this->first !== ""
             &&
-            $this->last != null && $this->last !== ""
+            $this->last != null     &&  $this->last !== ""
             &&
-            $this->email != null && $this->email !== ""
+            $this->email != null    &&  $this->email !== ""
             &&
-            $this->password != null && $this->password !== "";
+            $this->password != null &&  $this->password !== "";
     }
 
 }

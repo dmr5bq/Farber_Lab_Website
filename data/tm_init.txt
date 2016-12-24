@@ -1,0 +1,9 @@
+Basel:Al-Barghouthi::Graduate Researcher:students:true/
+Gina:Calabrese:gmc7e@virginia.edu:Senior Lab Specialist:staff:true/
+Charlotte:Chambers::Undergraduate Researcher:students:true/
+Charles:Farber:crf2s@virginia.edu:Prinicipal Investigator:faculty:true/
+Larry:Mesner:ldm2v@virginia.edu:Assistant Professor:faculty:true/
+Dominic:Ritchey:dmr5bq@virginia.edu:Webmaster (Undergraduate):students:true/
+Robert:Rotzin::Graduate Researcher:students:true/
+Olivia:Sabik:ols5fg@virginia.edu:Graduate Researcher:students:true/
+Ingrid:Braenne::Senior Scientist:faculty:false

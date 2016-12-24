@@ -5,7 +5,8 @@
 
     require_once "../data.php";
     require_once "../display_injector.php";
-    require_once "../scripts/Admin.php";
+    require_once "../scripts/TeamMember.php";
+    require_once "../scripts/functions.php";
 
 ?>
 
@@ -62,7 +63,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                     </li>
                 </ul>
                 <a id="pub-nav-arrow" href='#top'>
-                    <img src="arrow-collapse.png">
+                    <img src="../assets/arrow-collapse.png">
                 </a>
             </div><!--/people-nav-->
             <div id='big-box'>
@@ -104,124 +105,23 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                     </div> <!-- /lower-pub-nav -->
                 </div><!-- /people-selector -->
                 <div id='photo-wrapper' class='people-with-photos'>
-                    <div class='person-box students'>
-                        <img class='person-photo' src='web_al.jpg'>
-                        <div class='person-text hidden'>
-                            <p>Basel Al-Barghouthi </p>
-                            <p> Graduate Researcher </p>
-                            
-                            <a href='mailto:placeholder@virginia.edu'>
-                                <div>
-                                    <img src='email_logo_only.png'>
-                                </div>
-                            </a>
-                            
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box staff'>
-                        <img class='person-photo' src='web_calabrese.jpg'>
-                        <div class='person-text hidden'>
-                            <p>Gina Calabrese </p>
-                            <p>Senior Lab Specialist </p>
-                            
-                            <a href='mailto:gmc7e@virginia.edu'>
-                                <div>
-                                    <img src='email_logo_only.png'>
-                                </div>
-                            </a>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box students'>
-                        <img class='person-photo' src='web_chambers.jpg'>
-                        <div class='person-text hidden'>
-                            <p> Charlotte Chambers </p>
-                            <p> Undergraduate Researcher </p>
-                            
-                            <a href='mailto:placeholder@virginia.edu'>
-                                <div>
-                                    <img src='email_logo_only.png'>
-                                </div>
-                            </a>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                     <div class='person-box faculty'>
-                        <img class='person-photo' src='web_farber.jpg'>
-                        <div class='person-text'>
-                            <p> Charles R. Farber, Ph.D. </p>
-                            <p> Principal Investigator </p>
-                            
-                            <a href='mailto:placeholder@virginia.edu'>
-                                <div>
-                                    <img src='email_logo_only.png'>
-                                </div>
-                            </a>
-                        </div><!-- /person-text -->
-                    </div>
-                    <div class='person-box faculty'>
-                        <img class='person-photo' src='web_mesner.jpg'>
-                        <div class='person-text hidden'>
-                            <p> Larry Mesner, Ph.D. </p>
-                            <p> Assistant Professor </p>
-                        </div><!-- /person-text -->
-                        
-                        <a href='mailto:ldm2v@virginia.edu'>
-                                <div>
-                                    <img src='email_logo_only.png'>
-                                </div>
-                            </a>
-                    </div><!-- /person-box -->
-                    <div class='person-box students'>
-                        <img class='person-photo' src='web_ritchey.JPG'>
-                        <div class='person-text hidden'>
-                            <p> Dominic Ritchey </p>
-                            <p> Webmaster (Undergraduate)</p>
-                        </div><!-- /person-text -->
-                        
-                        <a href='mailto:placeholder@virginia.edu'>
-                                <div>
-                                    <img src='email_logo_only.png'>
-                                </div>
-                            </a>
-                    </div><!-- /person-box -->
-                    <div class='person-box students'>
-                        <img class='person-photo' src='web_rotzin.jpg'>
-                        <div class='person-text hidden'>
-                            <p> Robert Rotzin </p>
-                            <p> Graduate Researcher </p>
-                            
-                            <a href='mailto:placeholder@virginia.edu'>
-                                <div>
-                                    <img src='email_logo_only.png'>
-                                </div>
-                            </a>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box students'>
-                        <img class='person-photo' src='web_sabik.jpg'>
-                        <div class='person-text hidden'>
-                            <p> Olivia Sabik </p>
-                            <p> Graduate Researcher </p>
-            
-                            <a href='mailto:ols5fg@virginia.edu'>
-                                <div>
-                                    <img src='email_logo_only.png'>
-                                </div>
-                            </a>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
-                    <div class='person-box faculty'>
-                        <img class='person-photo' src='female_placeholder.jpg'>
-                        <div class='person-text hidden'>
-                            <p> Ingrid Braenne, Ph.D. </p>
-                            <p> Senior Scientist </p>
-                            
-                            <a href='mailto:placeholder@virginia.edu'>
-                                <div>
-                                    <img src='email_logo_only.png'>
-                                </div>
-                            </a>
-                        </div><!-- /person-text -->
-                    </div><!-- /person-box -->
+
+                <?php
+
+                    $all_tm = fetch_all_team_members();
+
+                    foreach ($all_tm as $tm) {
+
+                        $has_img = $tm['has_image'] == 1;
+
+                        $tm_obj = TeamMember::create_team_member($tm['first'], $tm['last'], $tm['email'], $tm['title'], $tm['category'], $has_img);
+
+                        $tm_obj->generate_display();
+                    }
+
+
+                ?>
+
                 </div><!-- /photo-wrapper -->
                 <h1>Alumni</h1>
                 <div id='people-selector'>

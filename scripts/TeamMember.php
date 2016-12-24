@@ -1,6 +1,6 @@
 <?php
 
-require_once "../Settings.php";
+//require_once "../Settings.php";
 require_once "Model.php";
 
 class TeamMember implements Model
@@ -13,7 +13,7 @@ class TeamMember implements Model
     private $has_image;
     private $category;
 
-    public static function create_team_member($first, $last, $email="not defined", $category="ug", $title="not defined", $has_image=false) {
+    public static function create_team_member($first, $last, $email="not defined", $title="not defined", $category="", $has_image=false) {
         $output = new TeamMember();
 
         $output->first = $first;
@@ -26,16 +26,21 @@ class TeamMember implements Model
         return $output;
     }
 
+    public function toString() {
+        return "[TeamMember: " . $this->first . " , " . $this->last .  " , " . $this->email . " ]";
+    }
+
     public function generate_display() {
 
-        $img_link = 'web_' . strtolower($this->last) . '.jpg';
+        $img_link = '../assets/web_' . strtolower($this->last) . '.jpg';
         $img_or_empty = $this->has_image ? "<img class='person-photo' src='$img_link'>" : "";
+        $hidden_or_not = $this->has_image ? 'hidden' : '';
 
 
         echo "                    
                     <div class='person-box $this->category'>" .
                         $img_or_empty . "
-                        <div class='person-text hidden'>
+                        <div class='person-text $hidden_or_not'>
                             <p> $this->first $this->last </p>
                             <p> $this->title </p>
                         </div><!-- /person-text -->
