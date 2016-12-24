@@ -24,9 +24,13 @@ $database = new mysqli($db_root, $db_user, $db_pass, $db_name);
 
 build_tables($database);
 
-initialize_team_members('data/tm_init.txt');
-initialize_alumni('data/alum_init.txt');
+initialize_team_members(Settings::$team_members_data_filename);
+initialize_alumni(Settings::$alumni_data_filename);
+?>
 
+<a href="index.php">Go to Home Page</a>
+
+<?php
 
 function reset_database($database_root, $db_name) {
     $database_root->query(

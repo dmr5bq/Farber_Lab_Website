@@ -11,6 +11,11 @@ require_once "Model.php";
 class Publication implements Model
 {
 
+    private $year;
+    private $date;
+    private $authors;
+    private $title;
+    private $link;
 
     public function update() {
 

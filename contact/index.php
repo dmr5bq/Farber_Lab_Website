@@ -12,6 +12,8 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
     require_once "../display_injector.php";
     require_once "../scripts/PHPMailer/PHPMailerAutoload.php";
 
+
+    // TODO TODO TODO DO THIS WITH AJAX NOT A POST
     if (isset($_POST['name'])) {
         $mailer = new PHPMailer();
 
