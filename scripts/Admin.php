@@ -37,12 +37,9 @@ class Admin implements Model
 
     public function update() {
 
-        $db_root = Settings::$db_root;
-        $db_user = Settings::$db_user;
-        $db_pass = Settings::$db_pass;
-        $db_name = Settings::$db_name;
 
-        $database = new mysqli($db_root, $db_user, $db_pass, $db_name);
+        $database = Settings::get_database_connection();
+
         $adm_email = $this->email;
 
         $result = $database->query("
@@ -77,12 +74,7 @@ class Admin implements Model
 
     public function store() {
 
-        $db_root = Settings::$db_root;
-        $db_user = Settings::$db_user;
-        $db_pass = Settings::$db_pass;
-        $db_name = Settings::$db_name;
-
-        $database = new mysqli($db_root, $db_user, $db_pass, $db_name);
+        $database = Settings::get_database_connection();
 
         $adm_first = $this->first;
         $adm_last = $this->last;
@@ -102,12 +94,7 @@ class Admin implements Model
 
     private static function _user_in_database($email) {
 
-        $db_root = Settings::$db_root;
-        $db_user = Settings::$db_user;
-        $db_pass = Settings::$db_pass;
-        $db_name = Settings::$db_name;
-
-        $database = new mysqli($db_root, $db_user, $db_pass, $db_name);
+        $database = Settings::get_database_connection();
 
         $result = $database->query("
         

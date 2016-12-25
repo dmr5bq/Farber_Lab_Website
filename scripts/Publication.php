@@ -11,12 +11,28 @@ require_once "Model.php";
 class Publication implements Model
 {
 
-    private $year;
-    private $date;
-    private $authors;
     private $title;
+    private $authors;
     private $published_in;
     private $link;
+    private $year;
+    private $date;
+
+
+    public static function create_publication($title, $authors, $published_in, $link, $year, $date) {
+
+        $pub = new Publication();
+
+        $pub->title = $title;
+        $pub->authors = $authors;
+        $pub->published_in = $published_in;
+        $pub->link = $link;
+        $pub->year = $year;
+        $pub->date = $date;
+
+        return $pub;
+
+    }
 
     public function generate_display() {
         echo "

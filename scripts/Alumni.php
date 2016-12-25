@@ -42,12 +42,8 @@ class Alumni implements Model
 
     public function update() {
 
-        $db_root = Settings::$db_root;
-        $db_user = Settings::$db_user;
-        $db_pass = Settings::$db_pass;
-        $db_name = Settings::$db_name;
+        $database = Settings::get_database_connection();
 
-        $database = new mysqli($db_root, $db_user, $db_pass, $db_name);
         $first = $this->first;
         $last = $this->last;
 
@@ -83,12 +79,7 @@ class Alumni implements Model
 
     public function store() {
 
-        $db_root = Settings::$db_root;
-        $db_user = Settings::$db_user;
-        $db_pass = Settings::$db_pass;
-        $db_name = Settings::$db_name;
-
-        $database = new mysqli($db_root, $db_user, $db_pass, $db_name);
+        $database = Settings::get_database_connection();
 
         $loc_first =    $this->first;
         $loc_last =     $this->last;
