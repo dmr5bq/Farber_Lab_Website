@@ -56,9 +56,22 @@ class Publication implements Model
 
     public function update() {
 
+        // TODO TODO TODO
+
+
     }
 
     public function store() {
+
+        $database = Settings::get_database_connection();
+
+        $database->query("
+        
+            INSERT INTO Publications (title, authors, published_in, link, year, date) 
+            VALUES
+            ('$this->title', '$this->authors', '$this->published_in', '$this->link', '$this->year', '$this->date')
+        
+        ");
 
     }
 }
