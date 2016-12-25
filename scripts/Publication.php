@@ -35,7 +35,7 @@ class Publication implements Model
     }
 
     public function toString() {
-        return "[Publication: $this->title, $this->authors, $this->published_in \n $this->link, $this->year, $this->date]";
+        return "<b>Publication:</b> <br/>Title: $this->title <br/>Authors: $this->authors<br/>Published in $this->published_in<br/>Link: $this->link<br/>Year: $this->year<br/>$this->date<br/><br/>";
     }
 
     public function generate_display() {
