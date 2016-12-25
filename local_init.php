@@ -63,6 +63,12 @@ function build_tables($database) {
     CREATE TABLE Admins (id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY, first VARCHAR(30), last VARCHAR(30), email VARCHAR(40), password VARCHAR(100))
 ")
     or die($database->error);
+
+    $database->query("
+    CREATE TABLE Publications (id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY, title VARCHAR(150), authors VARCHAR(300), published_in VARCHAR(50), link VARCHAR(100), year CHAR(4), date VARCHAR(20))
+")
+    or die($database->error);
+
 }
 
 function initialize_team_members($data_filename) {

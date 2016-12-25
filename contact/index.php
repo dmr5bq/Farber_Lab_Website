@@ -13,29 +13,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
     require_once "../scripts/PHPMailer/PHPMailerAutoload.php";
 
 
-    // TODO TODO TODO DO THIS WITH AJAX NOT A POST
-    if (isset($_POST['name'])) {
-        $mailer = new PHPMailer();
 
-        init_mailer($mailer);
-
-        $mailer->addAddress('dmr5bq@virginia.edu');
-        $sender = strip_tags($mailer->Username);
-        $recipient = 'dmr5bq@virginia.edu';
-        $subject = strip_tags($_POST['subject']);
-
-
-        // TODO: NEED AN EMAIL BODY GENERATION METHOD
-
-        $msg = $_POST['msg'];
-        // Put information into the message
-        $mailer->addAddress($recipient);
-        $mailer->SetFrom($sender);
-        $mailer->Subject = "$subject";
-        $mailer->Body = "$msg";
-        $mailer->send()
-        or die($mailer->ErrorInfo);
-    }
 
 ?>
     <head>
@@ -48,6 +26,33 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
         print_meta_info();
 
         ?>
+
+        <script type="text/javascript">
+
+            function send_email() {
+
+                var ajax_dst = '../scripts/contact_ajax.php';
+
+                var name = $('#name').val();
+                var email = $('#email').val();
+                var subject = $('#subject').val();
+                var message = $('#msg').val();
+
+                var wrapper = {};
+                wrapper.name = name;
+                wrapper.email = email;
+                wrapper.subject = subject;
+                wrapper.message = message;
+
+                var json_obj = JSON.stringify(wrapper);
+
+                $.post(ajax_dst, json_obj, function() {
+                    // TODO TODO TODO
+                });
+
+            }
+
+        </script>
     </head>
     <body onload="load_background('contact')">
         <div id="total-wrapper">
@@ -70,7 +75,6 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                 <div id="body-right" class="body-box">
                     <div>
                         <h4>Have a question for us?</h4>
-                        <form action="../contact/" method="post">
                             <div>
                                 <label for="name"><p>Name:</p></label>
                                 <input type="text" id="name" name="name" required/>
@@ -81,14 +85,13 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                             </div> <!-- /form row 1 -->
                             <div>
                                 <label for="mail"><p>Subject:</p></label>
-                                <input type="subject" id="subject" name="subject" required/>
+                                <input type="text" id="subject" name="subject" required/>
                             </div> <!-- /form row 2 -->
                             <div>
                                 <label for="msg"><p>Message:</p></label>
                                 <textarea id="msg" name="msg" placeholder="Enter your questions, comments, or concerns."></textarea>
                             </div> <!-- /form row 3 -->
-                            <button type="submit">Send Email</button>
-                        </form> <!-- /form -->
+                            <button type="button" onclick="send_email()">Send Email</button>
                     </div> <!-- /form-wrapper -->
                 </div> <!-- /body-right -->
             </div> <!-- /content-wrapper -->
