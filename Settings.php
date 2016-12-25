@@ -17,5 +17,25 @@ class Settings
         return new mysqli(self::$db_root, self::$db_user, self::$db_pass, self::$db_name);
     }
 
+    public static function reset_database() {
+        $db_root = Settings::$db_root;
+        $db_user = Settings::$db_user;
+        $db_pass = Settings::$db_pass;
+        $db_name = Settings::$db_name;
+
+        $database_root = new mysqli($db_root, $db_user, $db_pass);
+
+        $database_root->query(
+            "
+                DROP DATABASE $db_name;
+            ")
+            or die($database_root->error);
+
+        $database_root->query(
+            "
+                CREATE DATABASE $db_name;
+            ")
+        or die($database_root->error);
+    }
 
 }

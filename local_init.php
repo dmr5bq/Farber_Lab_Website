@@ -10,41 +10,23 @@ require_once "Settings.php";
 require_once "scripts/Admin.php";
 require_once "scripts/Alumni.php";
 require_once "scripts/TeamMember.php";
+require_once "scripts/Publication.php";
 
-$db_root = Settings::$db_root;
-$db_user = Settings::$db_user;
-$db_pass = Settings::$db_pass;
-$db_name = Settings::$db_name;
+Settings::reset_database();
 
-$database_root = new mysqli($db_root, $db_user, $db_pass);
-
-reset_database($database_root, $db_name);
-
-$database = new mysqli($db_root, $db_user, $db_pass, $db_name);
+$database = Settings::get_database_connection();
 
 build_tables($database);
 
 initialize_team_members(Settings::$team_members_data_filename);
 initialize_alumni(Settings::$alumni_data_filename);
+initialize_publications(Settings::$publications_data_filename);
+
 ?>
 
 <a href="index.php">Go to Home Page</a>
 
 <?php
-
-function reset_database($database_root, $db_name) {
-    $database_root->query(
-        "
-    DROP DATABASE $db_name;
-    ")
-    or die($database_root->error);
-
-    $database_root->query(
-        "
-    CREATE DATABASE $db_name;
-    ")
-    or die($database_root->error);
-}
 
 
 function build_tables($database) {
@@ -56,22 +38,54 @@ function build_tables($database) {
 
     $database->query("
     CREATE TABLE Alumni (id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY, first VARCHAR(30), last VARCHAR(30), title VARCHAR(100), category VARCHAR(10))
-")
+  ")
     or die($database->error);
 
     $database->query("
     CREATE TABLE Admins (id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY, first VARCHAR(30), last VARCHAR(30), email VARCHAR(40), password VARCHAR(100))
-")
+  ")
     or die($database->error);
 
     $database->query("
     CREATE TABLE Publications (id INTEGER AUTO_INCREMENT NOT NULL PRIMARY KEY, title VARCHAR(150), authors VARCHAR(300), published_in VARCHAR(50), link VARCHAR(100), year CHAR(4), date VARCHAR(20))
-")
+  ")
     or die($database->error);
 
 }
 
-function initialize_team_members($data_filename) {
+function initialize_publications ($data_filename) {
+
+    $file_str = file_get_contents($data_filename);
+
+    $row_array = explode("\n", $file_str);
+
+    $pub_array = array();
+
+    foreach ($row_array as $row):
+
+        $new_row = explode('+', $row);
+
+        $pub_array[] = $new_row;
+
+    endforeach;
+
+    foreach ($pub_array as $pub_row):
+
+        // create_publication($title, $authors, $published_in, $link, $year, $date)
+
+
+        // TODO TODO TODO NOT WORKING RIGHT
+        $pub = Publication::create_publication($pub_row[1], $pub_row[2], $pub_row[3], $pub_row[0], substr($pub_row[4], strlen($pub_row[4]) - 4), $pub_row[4]);
+
+        echo $pub->toString();
+
+        $pub->store();
+
+    endforeach;
+
+}
+
+function initialize_team_members ($data_filename) {
 
     $file_str = file_get_contents($data_filename);
 
@@ -97,7 +111,8 @@ function initialize_team_members($data_filename) {
 
 }
 
-function initialize_alumni($data_filename) {
+function initialize_alumni ($data_filename) {
+
     $file_str = file_get_contents($data_filename);
 
     $row_array = explode("/\n", $file_str);
