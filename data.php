@@ -1,10 +1,5 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: student
- * Date: 12/22/16
- * Time: 10:27 AM
- */
+
 
 $link_home = 'index.php';
 $link_about = 'about/';
@@ -23,6 +18,7 @@ $style_people = $link_root.$style_root.'people.css';
 $style_publications = $link_root.$style_root.'publications.css';
 $style_contact = $link_root.$style_root.'contact.css';
 
+// prints all necessary style links depending on which page name is entered
 function print_style_link($section) {
     $style_root = 'stylesheets/';
     $link_root = '../';
@@ -43,6 +39,7 @@ function print_style_link($section) {
 
 }
 
+// returns a path between the origin and section pages, handles when origin == section with javascript:void(0);
 function get_link($origin, $section) {
     $link_root = '../';
 
@@ -58,6 +55,7 @@ function get_link($origin, $section) {
     }
 }
 
+// prints the necessary script links for the page
 function print_script_link($section) {
 
     $script_root = 'scripts/';
@@ -76,6 +74,7 @@ function print_script_link($section) {
         ";
 }
 
+// prints the standard page meta info
 function print_meta_info() {
     echo "        
         <meta charset=\"utf-8\">

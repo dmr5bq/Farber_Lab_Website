@@ -1,5 +1,11 @@
 <?php
 
+/*
+ * This script is called by the Contact page on submitting a message
+ * This script is ONLY accessed via AJAX
+ * */
+
+
 require_once "PHPMailer/PHPMailerAutoload.php";
 require_once "../Settings.php";
 
@@ -21,8 +27,8 @@ init_mailer($mailer);
 $sender = strip_tags($mailer->Username);
 $subject = strip_tags("Contact Request from $email");
 
-// Put information into the message
 
+// add each default message recipient
 foreach (Settings::$message_recipients as $rec) {
     $mailer->addAddress(rtrim($rec));
 }

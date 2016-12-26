@@ -18,7 +18,7 @@
 class Settings
 {
 
-    // fields
+    // fields:
     private static $db_root = 'localhost';
     private static $db_user = 'root';
     private static $db_pass = '';
@@ -31,7 +31,7 @@ class Settings
                                         );
 
 
-    // Methods
+    // methods:
 
     // Simplifies database connection for other files, abstracts settings
     public static function get_database_connection() {
