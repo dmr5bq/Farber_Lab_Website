@@ -4,6 +4,7 @@
 
     require_once "../data.php";
     require_once "../display_injector.php";
+    require_once "../Settings.php";
 
 ?>
 <!--  
@@ -32,6 +33,24 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
         print_style_link('publications');
         print_script_link('publications');
         print_meta_info();
+
+        function fetch_all_publications() {
+
+            $database = Settings::get_database_connection();
+
+
+            $sql_result = $database->query("
+                SELECT * FROM Publications GROUP BY year ORDER BY date;
+            ");
+
+            if ( $sql_result != null ) {
+
+
+
+            }
+
+
+        }
 
     ?>
 
@@ -127,72 +146,6 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
             </div><!--/pub-nav-->
             <div id="big-box">
                 <h1>Our Publications</h1>
-                <div id="lower-pub-nav" class="pub-nav">
-                    <ul>    
-                    <li>
-                        <p>Go to:</p>
-                    </li>
-                    <li>
-                        <a href="#2014-list">
-                            <p>2014</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2013-list">
-                            <p>2013</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2012-list">
-                            <p>2012</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2011-list">
-                            <p>2011</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2010-list">
-                            <p>2010</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2009-list">
-                            <p>2009</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2008-list">
-                            <p>2008</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2007-list">
-                            <p>2007</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2006-list">
-                            <p>2006</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2006-list">
-                            <p>2005</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2004-list">
-                            <p>2004</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2003-list">
-                            <p>2003</p>
-                        </a>
-                    </li>
-                </ul>
                 <ul id='lower-second-ul'>
                     <li>
                         <a href="javascript:void(0);" id="expand-top">
@@ -220,8 +173,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
                             </a>
                         </div> <!-- /date-box div -->
                     </div> <!-- /date-box -->
-                    <ul id="2014-list" name="2014-list">
-                        <li>
+
 
             </div><!--/big-box-->
             <?php

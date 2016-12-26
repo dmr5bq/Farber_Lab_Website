@@ -3,14 +3,29 @@
 //require_once "../Settings.php";
 require_once "Model.php";
 
-class Alumni implements Model
-{
 
+/*
+ * class Alumni
+ * -> interface Model
+ *    -> methods
+ *       -> store(): inserts into corresponding database table, updates in table if item already exists
+ *       -> update(): updates the PHP object instance based on the database table
+ * -> fields:
+ *      first
+ *      last
+ *      title
+ *      category
+ * */
+class Alumni
+    implements Model
+{
+    // fields
     private $first;
     private $last;
     private $title;
     private $category;
 
+    // functional representation of the Alumni constructor
     public static function create_alumni($first, $last, $title="not defined", $category='') {
         $output = new Alumni();
 
@@ -22,10 +37,12 @@ class Alumni implements Model
         return $output;
     }
 
+    // returns string representation of the Alumni object
     public function toString() {
         return "[Alumni: " . $this->first . " , " . $this->last . " ]";
     }
 
+    // echoes the HTML representation of the Alumni object
     public function generate_display() {
 
         echo "                    
@@ -39,7 +56,7 @@ class Alumni implements Model
 
     }
 
-
+    // updates the local record from the corresponding database record
     public function update() {
 
         $database = Settings::get_database_connection();
@@ -77,6 +94,7 @@ class Alumni implements Model
 
     }
 
+    // inserts a record for the Alumni model into the table, updates a corresponding record if it exists
     public function store() {
 
         $database = Settings::get_database_connection();
@@ -97,6 +115,7 @@ class Alumni implements Model
         or die($database->error);
     }
 
+    // returns true if all of the fields contain information; protects database from incomplete records
     private function _is_valid() {
         return
             $this->first != null && $this->first !== ""

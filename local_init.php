@@ -12,15 +12,14 @@ require_once "scripts/Alumni.php";
 require_once "scripts/TeamMember.php";
 require_once "scripts/Publication.php";
 
+// reset the database to the default state
 Settings::reset_database();
 
-$database = Settings::get_database_connection();
+// initialize all of the tables in the database
+build_tables();
 
-build_tables($database);
-
-initialize_team_members(Settings::$team_members_data_filename);
-initialize_alumni(Settings::$alumni_data_filename);
-initialize_publications(Settings::$publications_data_filename);
+// read in all of the datafile information and create records in the database for each
+initialize_all();
 
 ?>
 
@@ -28,8 +27,12 @@ initialize_publications(Settings::$publications_data_filename);
 
 <?php
 
+// creates DB tables for TeamMembers, Alumni, Admins, and Publications
+function build_tables() {
 
-function build_tables($database) {
+    // get a MySQL database connection
+    $database = Settings::get_database_connection();
+
     $database->query("
     CREATE TABLE TeamMembers 
       (id integer AUTO_INCREMENT NOT NULL PRIMARY KEY ,first VARCHAR(30), last VARCHAR(30), email VARCHAR(40), title VARCHAR(100), category VARCHAR(10), has_image INTEGER(1))
@@ -53,6 +56,14 @@ function build_tables($database) {
 
 }
 
+// populate all of the database tables with the default information in the datafiles
+function initialize_all() {
+    initialize_team_members(Settings::$team_members_data_filename);
+    initialize_alumni(Settings::$alumni_data_filename);
+    initialize_publications(Settings::$publications_data_filename);
+}
+
+// initialize the publications table from the datafile
 function initialize_publications ($data_filename) {
 
     $file_str = file_get_contents($data_filename);
@@ -85,6 +96,7 @@ function initialize_publications ($data_filename) {
 
 }
 
+// initialize the team members from the datafile
 function initialize_team_members ($data_filename) {
 
     $file_str = file_get_contents($data_filename);
@@ -111,6 +123,7 @@ function initialize_team_members ($data_filename) {
 
 }
 
+// initialize the alumni table from the datafile
 function initialize_alumni ($data_filename) {
 
     $file_str = file_get_contents($data_filename);

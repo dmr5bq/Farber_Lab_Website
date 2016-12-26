@@ -1,11 +1,12 @@
 <?php
 
-/**
- * Created by PhpStorm.
- * User: student
- * Date: 12/24/16
- * Time: 7:53 AM
- */
+/*
+ * interface Model
+ * -> methods:
+ *      update()
+ *      store()
+ * -> used for any object that will be storable in the database
+ * */
 interface Model
 {
     public function update();

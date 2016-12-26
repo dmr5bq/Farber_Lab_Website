@@ -2,15 +2,25 @@
 
 require_once "Model.php";
 
-/**
- * Created by PhpStorm.
- * User: student
- * Date: 12/24/16
- * Time: 12:14 PM
- */
-class Publication implements Model
+/*
+ * class Publication:
+ * -> interface Model
+ *      -> methods
+ *          -> store(): inserts into corresponding database table, updates in table if item already exists
+ *          -> update(): updates the PHP object instance based on the database table
+ * -> fields:
+ *      title
+ *      authors
+ *      published_in
+ *      link
+ *      year
+ *      date
+ * */
+class Publication
+    implements Model
 {
 
+    // fields:
     private $title;
     private $authors;
     private $published_in;
@@ -19,6 +29,9 @@ class Publication implements Model
     private $date;
 
 
+    // methods:
+
+    // function representation of a constructor to get a new Publication model
     public static function create_publication($title, $authors, $published_in, $link, $year, $date) {
 
         $pub = new Publication();
@@ -34,10 +47,12 @@ class Publication implements Model
 
     }
 
+    // returns the string representation of the Publication model
     public function toString() {
         return "<b>Publication:</b> <br/>Title: $this->title <br/>Authors: $this->authors<br/>Published in $this->published_in<br/>Link: $this->link<br/>Year: $this->year<br/>$this->date<br/><br/>";
     }
 
+    // generates the display in HTML used on the web page for any given Publication
     public function generate_display() {
         echo "
                         <li> 
@@ -54,6 +69,7 @@ class Publication implements Model
              ";
     }
 
+    // updates the local record from the database record
     public function update() {
 
         // TODO TODO TODO
@@ -61,8 +77,11 @@ class Publication implements Model
 
     }
 
+    // inserts a version of the record into the database
     public function store() {
 
+
+        // TODO handle updating existing records
         $database = Settings::get_database_connection();
 
         $database->query("

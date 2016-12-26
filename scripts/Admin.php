@@ -3,7 +3,18 @@
 //require_once "../Settings.php";
 require_once "Model.php";
 
-
+/*
+ * class Admin
+ * -> interface Model
+ *    -> methods
+ *       -> store(): inserts into corresponding database table, updates in table if item already exists
+ *       -> update(): updates the PHP object instance based on the database table
+ * -> fields:
+ *      first
+ *      last
+ *      email
+ *      password
+ * */
 class Admin implements Model
 {
 
@@ -12,14 +23,19 @@ class Admin implements Model
     private $email;
     private $password;
 
+    // changes the stored password to the encrypted version of the plaintext password parameter
     public function change_password($password) {
         $this->password = Admin::_encrypt($password);
     }
 
+    // used to protect user passwords in the PHP object and database record versions of the Admin model
+    // the plaintext version of the password is *never* stored
     private static function _encrypt($plain_text) {
         return crypt($plain_text);
     }
 
+
+    // used as a functional-style constructor to get a new Admin PHP object
     public static function create_admin($first, $last, $email="", $password) {
         $output = new Admin();
 
@@ -31,12 +47,13 @@ class Admin implements Model
         return $output;
     }
 
+    // get the string version of the object
     public function toString() {
         return "[Admin: " . $this->first . " , " . $this->last .  " , " . $this->email . " ]";
     }
 
+    // update the local model from the corresponding db record
     public function update() {
-
 
         $database = Settings::get_database_connection();
 
@@ -72,6 +89,7 @@ class Admin implements Model
 
     }
 
+    // insert the local Admin model into a db record or update the corresponding db record
     public function store() {
 
         $database = Settings::get_database_connection();
@@ -92,6 +110,7 @@ class Admin implements Model
             or die($database->error);
     }
 
+    // returns true if the user is in the Admin table, identified uniquely by the email
     private static function _user_in_database($email) {
 
         $database = Settings::get_database_connection();
@@ -107,6 +126,7 @@ class Admin implements Model
 
     }
 
+    // validates if the model represents a complete record, used to protect the database from incomplete records
     private function _is_valid() {
         return
             $this->first != null    &&  $this->first !== ""

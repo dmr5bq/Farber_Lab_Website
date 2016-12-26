@@ -91,7 +91,7 @@ $(document).ready(function () {
         $('#logo p:nth-child(2)').css('color', 'var(--highlight-text-color)');
     });
     
-  
+
     $('.collapse').mouseenter(function () {
         $(this).addClass('collapse-hover');
         $(this).parent('.date-box').css('bottom-border', '5px solid var(--secondary-color)');

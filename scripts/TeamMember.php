@@ -3,9 +3,24 @@
 //require_once "../Settings.php";
 require_once "Model.php";
 
-class TeamMember implements Model
+/*
+ * class TeamMember
+ * -> interface Model
+ *    -> methods
+ *       -> store(): inserts into corresponding database table, updates in table if item already exists
+ *       -> update(): updates the PHP object instance based on the database table
+ * -> fields:
+ *      first
+ *      last
+ *      email
+ *      title
+ *      has_image
+ *      category
+ * */
+class TeamMember
+    implements Model
 {
-
+    // fields:
     private $first;
     private $last;
     private $email;
@@ -13,6 +28,9 @@ class TeamMember implements Model
     private $has_image;
     private $category;
 
+    // methods:
+
+    // functional version of the TeamMember constructor
     public static function create_team_member($first, $last, $email="not defined", $title="not defined", $category="", $has_image=false) {
         $output = new TeamMember();
 
@@ -26,10 +44,12 @@ class TeamMember implements Model
         return $output;
     }
 
+    // returns a string representation of the TM
     public function toString() {
         return "[TeamMember: " . $this->first . " , " . $this->last .  " , " . $this->email . " ]";
     }
 
+    // echoes an HTML representation of the TM
     public function generate_display() {
 
         $img_link = '../assets/web_' . strtolower($this->last) . '.jpg';
@@ -55,6 +75,7 @@ class TeamMember implements Model
 
     }
 
+    // updates the local model from the corresponding database record
     public function update() {
 
         $database = Settings::get_database_connection();
@@ -94,8 +115,8 @@ class TeamMember implements Model
 
     }
 
+    // inserts a new record into the database
     public function store() {
-
 
         $database = Settings::get_database_connection();
 
@@ -117,6 +138,7 @@ class TeamMember implements Model
         or die($database->error);
     }
 
+    // validates that the model is complete; protects the database from incomplete records
     private function _is_valid() {
         return
             $this->first != null && $this->first !== ""
