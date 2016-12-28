@@ -25,12 +25,12 @@ class Admin implements Model
 
     // changes the stored password to the encrypted version of the plaintext password parameter
     public function change_password($password) {
-        $this->password = Admin::_encrypt($password);
+        $this->password = Admin::encrypt($password);
     }
 
     // used to protect user passwords in the PHP object and database record versions of the Admin model
     // the plaintext version of the password is *never* stored
-    private static function _encrypt($plain_text) {
+    public static function encrypt($plain_text) {
         return crypt($plain_text);
     }
 

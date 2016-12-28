@@ -61,6 +61,7 @@ function initialize_all() {
     initialize_team_members(Settings::$team_members_data_filename);
     initialize_alumni(Settings::$alumni_data_filename);
     initialize_publications(Settings::$publications_data_filename);
+    initialize_admins(Settings::$admins_data_filename);
 }
 
 // initialize the publications table from the datafile
@@ -88,7 +89,6 @@ function initialize_publications ($data_filename) {
         // TODO TODO TODO NOT WORKING RIGHT
         $pub = Publication::create_publication($pub_row[1], $pub_row[2], $pub_row[3], $pub_row[0], substr($pub_row[4], strlen($pub_row[4]) - 4), $pub_row[4]);
 
-        echo $pub->toString();
 
         $pub->store();
 
@@ -147,4 +147,31 @@ function initialize_alumni ($data_filename) {
         $al->store();
 
     endforeach;
+}
+
+function initialize_admins( $data_filename) {
+
+    $file_str = file_get_contents($data_filename);
+
+    $row_array = explode("/\n", $file_str);
+
+    $adm_array = array();
+
+    foreach ($row_array as $row):
+
+        $new_row = explode(':', $row);
+
+        $adm_array[] = $new_row;
+
+    endforeach;
+
+    foreach ($adm_array as $a_row):
+
+        $ad = Admin::create_admin($a_row[0], $a_row[1], $a_row[2], $a_row[3]);
+
+        $ad->store();
+
+    endforeach;
+
+
 }

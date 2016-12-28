@@ -109,7 +109,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
 
                 <?php
 
-                    $all_tm = fetch_all_team_members();
+                    $all_tm = fetch_all_team_members_array();
 
                     foreach ($all_tm as $tm) {
 
@@ -160,7 +160,7 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
 
                 <?php
 
-                $all_alums = fetch_all_alumni();
+                $all_alums = fetch_all_alumni_array();
 
                 foreach ($all_alums as $alum) {
 

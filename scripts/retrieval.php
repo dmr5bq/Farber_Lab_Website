@@ -1,14 +1,10 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: student
- * Date: 12/24/16
- * Time: 8:49 AM
- */
+
 
 require_once "../Settings.php";
+require_once "Admin.php";
 
-function fetch_all_team_members() {
+function fetch_all_team_members_array() {
 
     $database = Settings::get_database_connection();
 
@@ -28,7 +24,7 @@ function fetch_all_team_members() {
 
 }
 
-function fetch_all_alumni() {
+function fetch_all_alumni_array() {
 
     $database = Settings::get_database_connection();
 
@@ -136,4 +132,37 @@ function fetch_publication_years_array() {
     }
 
     return $output;
+}
+
+function fetch_all_admins_array() {
+    $database = Settings::get_database_connection();
+
+    $result = $database->query("
+        
+        SELECT * FROM Admins ORDER BY `last`;
+        
+    ");
+
+    $output = array();
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $output[] = $row;
+    }
+
+    return $output;
+}
+
+function fetch_all_admins() {
+
+    $adm_array = fetch_all_admins_array();
+
+    $output = array();
+
+    foreach ($adm_array as $i)
+        $output[] = Admin::create_admin($i['first'], $i['last'], $i['email'], $i['password']);
+
+    return $output;
+
+
+
 }
