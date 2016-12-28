@@ -167,7 +167,9 @@ function initialize_admins( $data_filename) {
 
     foreach ($adm_array as $a_row):
 
-        $ad = Admin::create_admin($a_row[0], $a_row[1], $a_row[2], $a_row[3]);
+        echo $a_row[3];
+
+        $ad = Admin::create_admin(rtrim($a_row[0]), rtrim($a_row[1]), rtrim($a_row[2]), rtrim($a_row[3]));
 
         $ad->store();
 

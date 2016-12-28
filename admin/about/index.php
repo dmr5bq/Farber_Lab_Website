@@ -11,4 +11,3 @@ if (isset($_SESSION['authenticator'])) {
 } else {
     header('location: ../index.php?status=improper_access');
 }
-

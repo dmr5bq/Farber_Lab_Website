@@ -1,7 +1,8 @@
 <?php
 
-require_once "../../Settings.php";
-require_once "../../scripts/Admin.php";
+
+require_once $_SERVER['DOCUMENT_ROOT']."/Farber_Lab_Website/Settings.php";
+require_once $_SERVER['DOCUMENT_ROOT']."/Farber_Lab_Website/scripts/Admin.php";
 
 class Authenticator
 {
@@ -11,7 +12,6 @@ class Authenticator
     const AUTH_UNINITIALIZED = 3;
 
     public $status;
-
 
     function __construct()
     {
@@ -25,15 +25,24 @@ class Authenticator
 
             $password_hash = Admin::encrypt($password);
 
-            echo "$email $password $password_hash";
+            echo "$email $password $password_hash <br/>";
 
             $sql_result = $database->query("
         
-            SELECT * FROM Admins WHERE password='$password_hash' AND email='$email';
+            SELECT * FROM Admins WHERE email='$email';
         
           ");
 
-            return $sql_result != null;
+            $match = mysqli_fetch_assoc($sql_result);
+
+            if ($match != null) {
+
+                echo $match['email'];
+
+                return strcmp($match['password'], $password_hash) == 0;
+            }
+
+
 
         }
 
@@ -48,7 +57,12 @@ class Authenticator
         
         ");
 
-            return $sql_result != null;
+            $match = mysqli_fetch_assoc($sql_result);
+
+            if ($match != null) {
+
+                return true;
+            }
         }
 
     function authenticate($email, $password)
@@ -75,21 +89,17 @@ class Authenticator
 
         switch ( $this->status ) {
             case self::AUTH_OK:
-                header('home/');
+                header('location: home/');
                 break;
             case self::AUTH_FAIL_PASSWORD:
-                header('index.php?status=fail_password');
+                header('location: index.php?status=fail_password');
                 break;
             case self::AUTH_FAIL_USERNAME:
-                header('index.php?status=fail_username');
+                header('location: index.php?status=fail_username');
                 break;
             case self::AUTH_UNINITIALIZED:
-                header('index.php');
+                header('location: index.php');
         }
 
     }
 }
-
-$a = new Authenticator();
-
-$a->is_valid_admin('aaa', 'a');

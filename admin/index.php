@@ -1,7 +1,7 @@
 <?php
 
     require_once "../scripts/retrieval.php";
-    require_once "scripts/authenticate.php";
+    require_once "scripts/Authenticator.php";
 
     session_start();
 
@@ -47,10 +47,7 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
     $_SESSION['authenticator']->authenticate($email, $password_plaintext);
 
-    echo $_SESSION['authenticator']->status;
-
-
-    //$_SESSION['authenticator']->redirect();
+    $_SESSION['authenticator']->redirect();
 
 }
 

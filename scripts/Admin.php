@@ -31,7 +31,8 @@ class Admin implements Model
     // used to protect user passwords in the PHP object and database record versions of the Admin model
     // the plaintext version of the password is *never* stored
     public static function encrypt($plain_text) {
-        return crypt($plain_text);
+        $salt = Settings::get_encryption_salt();
+        return crypt($plain_text, $salt);
     }
 
 

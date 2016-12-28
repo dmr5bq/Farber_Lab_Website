@@ -31,6 +31,7 @@ class Settings
                                         'dmr5bq@virginia.edu'
                                         );
 
+    private static $encryption_salt = 'qwertypoiu0987651234';
 
     // methods:
 
@@ -61,4 +62,7 @@ class Settings
         or die($database_root->error);
     }
 
+    public static function get_encryption_salt() {
+        return self::$encryption_salt;
+    }
 }
