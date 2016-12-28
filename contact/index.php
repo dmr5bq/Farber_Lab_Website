@@ -8,8 +8,8 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
 -->
 <?php
 
-    require_once "../data.php";
-    require_once "../display_injector.php";
+    require_once "../scripts/data.php";
+    require_once "../scripts/display_injector.php";
     require_once "../scripts/PHPMailer/PHPMailerAutoload.php";
 
 

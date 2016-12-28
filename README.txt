@@ -5,7 +5,7 @@ Home
 |
 |--> About
 |       |
-|       |--> Project Detail
+|       |--> Project Detail / : ID
 |
 |--> People
 |

@@ -2,9 +2,11 @@
 
 <?php
 
-    require_once "../data.php";
-    require_once "../display_injector.php";
+    require_once "../scripts/data.php";
+    require_once "../scripts/display_injector.php";
     require_once "../Settings.php";
+    require_once "../scripts/retrieval.php";
+    require_once "../scripts/Publication.php";
 
 ?>
 <!--  
@@ -34,148 +36,129 @@ Property of Dominic Ritchey. For permissions, contact dominicritchey@email.virgi
         print_script_link('publications');
         print_meta_info();
 
-        function fetch_all_publications() {
-
-            $database = Settings::get_database_connection();
 
 
-            $sql_result = $database->query("
-                SELECT * FROM Publications GROUP BY year ORDER BY date;
-            ");
-
-            if ( $sql_result != null ) {
+        // PHP FUNCTIONS
 
 
+        function display_publications_from_year( $year ) {
+
+            echo "<ul id=\"$year-list\" class='year-list'>";
+
+            $publications_from_year = fetch_publications_from_year($year); // will be the result of the publication fetch function
+
+            if ($publications_from_year != null) {
+
+                foreach ($publications_from_year as $publication) {
+
+
+                    if ($publication instanceof Publication)
+                        $publication->generate_display();
+                    else die ("Thrown by display_publications_from_year: Non-Publication object found");
+
+                }
+            }
+
+            echo "</ul>";
+        }
+
+        function display_year_header($year) {
+            echo "
+                                <div class=\"date-box\" id='$year-header'>
+                                    <div>
+                                        <h3>$year</h3>
+                                    </div><!-- /date-box div -->
+                                    <div>
+                                        <a href=javascript:void(0); id=\"$year-collapse\" class='collapse' onclick='collapse_year( $year )'>
+                                            <img src=\"../assets/arrow-collapse.png\" class=\"pub-arrow\">
+                                        </a>
+                                        <a href=javascript:void(0); id=\"$year-expand\" class=\"hidden expand\" onclick='expand_year( $year )'>
+                                            <img src=\"../assets/arrow-expand.png\" class=\"pub-arrow\">
+                                        </a>
+                                    </div> <!-- /date-box div -->
+                                </div> <!-- /date-box -->
+                        ";
+        }
+
+        function generate_publications_nav() {
+            $part_1 = "
+                    <div id='pub-nav' class='nav'>
+                        <ul>    
+                            <li>
+                                <p>Go to:</p>
+                            </li>";
+                            
+            $all_pub_years = fetch_publication_years_array();
+
+            $part_2 = "";
+
+            foreach ($all_pub_years as $year) {
+                $part_2 .= "
+                            <li>
+                                <a href=\"#$year-list\">
+                                    <p>$year</p >
+                                </a >
+                            </li >
+                 ";
 
             }
 
+            $part_3 = "
+                    </ul>
+                    <ul id='second-ul'>
+                        <li>
+                            <a href=\"javascript:void(0);\" id=\"expand-top\" onclick='show_all_publications()'>
+                                <p>Show All</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a href=\"javascript:void(0);\" id=\"collapse-top\" onclick='hide_all_publications()'>
+                                <p>Hide All</p>
+                            </a>
+                        </li>
+                    </ul>
+                    <a id=\"pub-nav-arrow\" href='#top'>
+                        <img src=\"../assets/arrow-collapse.png\">
+                    </a>
+                </div><!--/pub-nav-->
+                ";
 
+            echo $part_1.$part_2.$part_3;
         }
 
     ?>
 
     </head>
     <body onload="load_background('publications')">
+
             <?php
 
                 generate_header('publications');
+                generate_publications_nav();
 
             ?>
 
-            <div id='pub-nav' class='hidden'>
-                <ul>    
-                    <li>
-                        <p>Go to:</p>
-                    </li>
-                    <li>
-                        <a href="#2014-list">
-                            <p>2014</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2013-list">
-                            <p>2013</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2012-list">
-                            <p>2012</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2011-list">
-                            <p>2011</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2010-list">
-                            <p>2010</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2009-list">
-                            <p>2009</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2008-list">
-                            <p>2008</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2007-list">
-                            <p>2007</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2006-list">
-                            <p>2006</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2006-list">
-                            <p>2005</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2004-list">
-                            <p>2004</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="#2003-list">
-                            <p>2003</p>
-                        </a>
-                    </li>
-                </ul>
-                <ul id='second-ul'>
-                    <li>
-                        <a href="javascript:void(0);" id="expand-top">
-                            <p>Show All</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" id="collapse-top">
-                            <p>Hide All</p>
-                        </a>
-                    </li>
-                </ul>
-                <a id="pub-nav-arrow" href='#top'>
-                    <img src="../assets/arrow-collapse.png">
-                </a>
-            </div><!--/pub-nav-->
             <div id="big-box">
+
                 <h1>Our Publications</h1>
-                <ul id='lower-second-ul'>
-                    <li>
-                        <a href="javascript:void(0);" id="expand-top">
-                            <p>Show All</p>
-                        </a>
-                    </li>
-                    <li>
-                        <a href="javascript:void(0);" id="collapse-top">
-                            <p>Hide All</p>
-                        </a>
-                    </li>
-                </ul>
-                </div>
+
                 <div id='date-box-wrapper'>
-                    <div class="date-box" id='v2-first-date-box'>
-                        <div>
-                            <h3>2014</h3>
-                        </div><!-- /date-box div -->
-                        <div>
-                            <a href=javascript:void(0); id="2014-collapse" class='collapse'>
-                                <img src="../assets/arrow-collapse.png" class="pub-arrow">
-                            </a>
-                            <a href=javascript:void(0); id="2014-expand" class="hidden expand">
-                                <img src="../assets/arrow-expand.png" class="pub-arrow">
-                            </a>
-                        </div> <!-- /date-box div -->
-                    </div> <!-- /date-box -->
 
+                    <?php
 
+                    $all_pub_years = fetch_publication_years_array();
+
+                        foreach($all_pub_years as $year) {
+
+                            display_year_header( $year );
+                            display_publications_from_year( $year );
+
+                        }
+                    ?>
+
+                </div> <!-- /date-box-wrapper -->
             </div><!--/big-box-->
+
             <?php
 
                  generate_footer('publications');

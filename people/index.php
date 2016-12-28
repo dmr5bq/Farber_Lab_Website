@@ -3,11 +3,11 @@
 
 <?php
 
-    require_once "../data.php";
-    require_once "../display_injector.php";
+    require_once "../scripts/data.php";
+    require_once "../scripts/display_injector.php";
     require_once "../scripts/TeamMember.php";
     require_once "../scripts/Alumni.php";
-    require_once "../scripts/functions.php";
+    require_once "../scripts/retrieval.php";
 
 ?>
 
