@@ -1,0 +1,21 @@
+<table>
+    <tr>
+        <td>
+            <p class="body-text">Historically, geneticists have dissected the genetics of disease by directly identifying changes in DNA that alter disease-related phenotypes. This approach has successfully identified a whole host of genetic variants, and in some cases the underlying genes, that increase an individual’s risk of developing diseases such as obesity, atherosclerosis, diabetes and osteoporosis. However, this approach fails to provide insight on the cellular mechanisms altered by these variants or the larger gene networks within which they function. In recent years, new technologies have paved the way to investigate the genetic basis other cellular components in a massively parallel fashion and at unprecedented resolution. These advances have enabled the quantification of molecular phenotypes such as gene expression (referred to as the “transcriptome”), metabolites (metabolome) and proteins (proteome), on a genome-wide scale. These new tools provide geneticists with the opportunity uncover networks of interacting genetic variants, transcripts and proteins and to begin to understand how their perturbation leads to disease. </p> </td>
+    </tr> <!-- row 0 -->
+    <tr>
+        <td>
+            <div>
+                <img src="../assets/cphg_sys.jpg">
+            </div><!-- left of td -->
+            <div>
+                <p class="caption">Figure 1 (left). Disease-associated genetic variation elicits its influence by perturbing biological components and their interactions. Systems genetics can be used to identify these perturbations, and the genes and networks involved, and the mechanisms through which they lead to disease. (Copyright, <em>University of Virginia Center for Publich Health Genomics</em>)</p>
+            </div> <!-- right of td -->
+        </td>
+    </tr> <!-- row 1 -->
+    <tr>
+        <td>             <a href='javascript:void(0);' name='projects'></a><!--Used for page jumps-->
+            <p class="body-text">This new area of research is referred to as “Systems Genetics” and it seeks to understand complexity by combining the principles of systems biology and genetics to uncover connections between genotype and complex disease. Importantly, systems genetics attempts to explain the role of genetic variation in cellular function and disease from the perspective of the entire system, not simply from the level of individual genes. The Farber lab in the CPHG is using systems genetics to identify genes and biological processes that affect bone development. This research promises to lead to the identification of novel therapeutic targets that can be use to combat diseases such as osteoporosis.</p>
+         <a href="http://cphg.virginia.edu/"><p>Information from the U.Va. Center for Public Health Genomics. Click here to learn more.</p></a></td>
+    </tr> <!-- row 2 -->
+</table> <!-- table 1 -->

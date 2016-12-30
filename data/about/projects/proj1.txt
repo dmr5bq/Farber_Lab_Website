@@ -1,0 +1,3 @@
+The HMDP is a novel high-resolution mouse mapping population that is ideal for systems genetics studies (Bennett et al. Genome Research. 2010 and Farber CR et al. PLoS Genetics. 2011). We are using systems genetics approaches in the HMDP to identify genes influencing complex skeletal traits such as bone density, morphology and microarchitecture.
+---
+N/A

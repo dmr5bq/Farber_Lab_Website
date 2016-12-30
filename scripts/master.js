@@ -1,10 +1,6 @@
 /*jslint browser: true*/
 /*global $, jQuery, alert*/
 
-/*TO DO:
-
-Dynamic resizing: especially for publications
-*/
 
 $(document).ready(function () {
     // Universal script
@@ -138,8 +134,8 @@ $(document).ready(function () {
     });
     //END contact
     $('td').mouseenter(function () {
-        $(this + '.photo-content').addClass('hidden');
-        $(this + '.hover-content').removeClass('hidden');
+        $(this + ' .photo-content').addClass('hidden');
+        $(this + ' .hover-content').removeClass('hidden');
     });
 });
 

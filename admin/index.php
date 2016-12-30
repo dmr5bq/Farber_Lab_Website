@@ -3,10 +3,27 @@
     require_once "../scripts/retrieval.php";
     require_once "scripts/Authenticator.php";
 
+    $ses_stat = session_status();
+
+    $has_session =
+        $ses_stat !== PHP_SESSION_DISABLED ||
+        $ses_stat !== PHP_SESSION_NONE ||
+        $ses_stat === PHP_SESSION_ACTIVE;
+
+    if ($has_session) {
+        if (isset($_SESSION['authenticator']))
+            $_SESSION['authenticator']->status = Authenticator::AUTH_UNINITIALIZED;
+        else {
+            session_start();
+            session_destroy();
+        }
+    }
+
     session_start();
 
     if (! isset($_SESSION['authenticator']))
         $_SESSION['authenticator'] = new Authenticator();
+
 ?>
 
 <form action="index.php" method="post">

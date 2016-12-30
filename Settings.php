@@ -27,11 +27,14 @@ class Settings
     public static $team_members_data_filename = 'data/people/tm_init.txt';
     public static $publications_data_filename = 'data/publications/pub_init.txt';
     public static $admins_data_filename = 'data/admin/admin_init.txt';
+    public static $about_sections_data_filename = 'data/about/sections.txt';
+    public static $about_projects_data_filename = 'data/about/projects/projects.txt';
     public static $message_recipients = array(
                                         'dmr5bq@virginia.edu'
                                         );
 
     private static $encryption_salt = 'qwertypoiu0987651234';
+
 
     // methods:
 

@@ -1,0 +1,8 @@
+
+ <table>
+        <tr>
+            <td><img src="../assets/system_gen.png"></td>
+            <td><h2>Systems Genetics of Complex Skeletal Phenotypes</h2>
+                <p class="body-text">Systems genetics seeks to understand how genetic information is integrated, organized and transmitted through cellular networks to impact cellular function/behavior. Much of our work in the lab uses systems genetics approaches that integrate genetic and transcriptome data to identify individual genes and gene networks influencing complex skeletal phenotypes. </p></td>
+        </tr> <!-- row 0 -->
+   </table> <!-- table 0 -->

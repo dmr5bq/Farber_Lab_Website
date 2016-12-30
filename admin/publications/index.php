@@ -1,13 +1,6 @@
 <?php
 
-require_once "../scripts/Authenticator.php";
+require_once "../scripts/auth_check.php";
 
-session_start();
+check_authentication();
 
-if (isset($_SESSION['authenticator'])) {
-    if ($_SESSION['authenticator']->status != Authenticator::AUTH_OK) {
-        header('location: ../index.php?status=improper_access');
-    }
-} else {
-    header('location: ../index.php?status=improper_access');
-}

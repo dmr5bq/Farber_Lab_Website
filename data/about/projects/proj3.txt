@@ -1,0 +1,3 @@
+We are appling Weighted Gene Co-expression Network Analysis to bone microarray data generated in the HMDP in order to reconstruct correlational networks.  The objective of this work is to use network information to pinpoint key genes and gene-gene interactions that are critical for osteoblast function.
+---
+N/A

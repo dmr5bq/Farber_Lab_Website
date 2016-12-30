@@ -1,0 +1,3 @@
+Dissecting the genetic basis of complex bone phenotypes using systems genetics in the Hybrid Mouse Diversity Panel (HMDP).:+proj1
+Elucidating the function of novel genes affecting skeletal traits identified in project #1.:+proj2
+Elucidating transcriptional networks that play critical roles in the function of osteoblasts.:+proj3
