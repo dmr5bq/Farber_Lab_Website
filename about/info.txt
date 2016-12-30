@@ -1,0 +1,34 @@
+
+About Section Explanation
+-------------------------
+
+The about section consists of two pseudo-models, called AboutSection and Project, respectively. These pseudo-models are
+PHP classes that contain fields and method related to the reading, creation, display and editing of the content. The
+following standards have to be adhered to for the models to work. These objects are not stored in the database due to
+their unique natures and lengths of their data. Instead, they are stored within the filesystem of the site itself to
+improve speed.
+
+To add an AboutSection:
+1. open sections.txt in the data/about dir
+2. add a line with the format <display_name>+:<link_name>
+3. create a <link_name>.txt file in the data/about dir
+4. in this file, enter the section text or HTML and *SAVE*
+5. reload the about page to see changes
+
+About Section
+-> link_name
+    - must be set equal to the filename w/o extension of a .txt file stored in the data/about dir
+    - the entire contents of the file will be stored into the AboutSection's text_data field; this field should never
+        be edited directly
+-> display_name
+    - this represents the section title
+
+To add a Project:
+1. open the projects.txt file in the data/about/projects dir
+2. add a link with the format <display_name>:+<link_name>
+3. add a thumbnail image (must be a PNG) to the assets dir with name <link_name>.png
+4. create a <link_name>.txt file in the data/about/projects dir
+5. enter a short description for the project preview
+6. press ENTER, type three hyphens "---" and hit ENTER again
+7. enter a longer description for the project page
+8. SAVE the files and reload the about page to see changes

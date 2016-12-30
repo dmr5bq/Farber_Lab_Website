@@ -21,7 +21,7 @@ class Project {
     }
 
     public function fetch_descriptions() {
-        $abs_data_root = $_SERVER["DOCUMENT_ROOT"].'/Farber_Lab_Website/data/about/projects/'; // TODO TODO Will need changed
+        $abs_data_root = $_SERVER["DOCUMENT_ROOT"].'/Farber_Lab_Website/data/about/projects/';
 
         $file_name = $this->link_name.self::STD_EXT;
         $file_path = $abs_data_root.$file_name;
