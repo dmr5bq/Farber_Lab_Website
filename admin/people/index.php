@@ -1,13 +1,18 @@
 <?php
 
-require_once "../scripts/Authenticator.php";
+require_once "../scripts/auth_check.php";
+require_once "../scripts/display_injector.php";
 
-session_start();
+check_authentication();
 
-if (isset($_SESSION['authenticator'])) {
-    if ($_SESSION['authenticator']->status != Authenticator::AUTH_OK) {
-        header('location: ../index.php?status=improper_access');
-    }
-} else {
-    header('location: ../index.php?status=improper_access');
-}
+?>
+<head>
+    <link rel="stylesheet" href="../../stylesheets/bootstrap/css/bootstrap.css">
+</head>
+<body>
+    <?php
+
+    generate_header( $_SESSION['admin'] )
+
+    ?>
+</body>

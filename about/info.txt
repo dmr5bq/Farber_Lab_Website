@@ -8,7 +8,7 @@ following standards have to be adhered to for the models to work. These objects 
 their unique natures and lengths of their data. Instead, they are stored within the filesystem of the site itself to
 improve speed.
 
-To add an AboutSection:
+To add an AboutSection manually:
 1. open sections.txt in the data/about dir
 2. add a line with the format <display_name>+:<link_name>
 3. create a <link_name>.txt file in the data/about dir
@@ -23,7 +23,7 @@ About Section
 -> display_name
     - this represents the section title
 
-To add a Project:
+To add a Project manually:
 1. open the projects.txt file in the data/about/projects dir
 2. add a link with the format <display_name>:+<link_name>
 3. add a thumbnail image (must be a PNG) to the assets dir with name <link_name>.png

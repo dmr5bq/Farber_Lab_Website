@@ -162,7 +162,25 @@ function fetch_all_admins() {
         $output[] = Admin::create_admin($i['first'], $i['last'], $i['email'], $i['password']);
 
     return $output;
+}
 
+function fetch_admin_by_email($email) {
+    $database = Settings::get_database_connection();
 
+    $result = $database->query("
+        
+        SELECT * FROM Admins WHERE email='$email';
+        
+    ");
+
+    $output = array();
+
+    while ($row = mysqli_fetch_assoc($result)) {
+        $output[] = $row;
+    }
+
+    $i = $output[0];
+
+    return Admin::create_admin($i['first'], $i['last'], $i['email'], $i['password']);
 
 }

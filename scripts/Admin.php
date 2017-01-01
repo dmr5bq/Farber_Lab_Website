@@ -139,4 +139,7 @@ class Admin implements Model
             $this->password != null &&  $this->password !== "";
     }
 
+    public function getEmail() {
+        return $this->email;
+    }
 }

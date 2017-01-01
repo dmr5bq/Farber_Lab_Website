@@ -100,6 +100,5 @@ class Authenticator
             case self::AUTH_UNINITIALIZED:
                 header('location: index.php');
         }
-
     }
 }
