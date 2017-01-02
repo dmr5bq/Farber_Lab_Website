@@ -76,9 +76,12 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
 
     $_SESSION['authenticator']->authenticate($email, $password_plaintext);
 
-    if ($_SESSION['authenticator']->status == Authenticator::AUTH_OK)
-        if (! isset($_SESSION['admin']))
+    if ($_SESSION['authenticator']->status == Authenticator::AUTH_OK) {
+        if (!isset($_SESSION['admin']))
             $_SESSION['admin'] = fetch_admin_by_email($email);
+        if (!isset($_SESSION['id']))
+            $_SESSION['id'] = $_SESSION['admin']->fetch_id();
+    }
 
     $_SESSION['authenticator']->redirect();
 

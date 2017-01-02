@@ -24,8 +24,8 @@ class Admin implements Model
     private $password;
 
     // changes the stored password to the encrypted version of the plaintext password parameter
-    public function change_password($password) {
-        $this->password = Admin::encrypt($password);
+    public function change_password($password_plaintext) {
+        $this->password = Admin::encrypt($password_plaintext);
     }
 
     // used to protect user passwords in the PHP object and database record versions of the Admin model
@@ -100,7 +100,8 @@ class Admin implements Model
         $adm_email = $this->email;
         $adm_password = $this->password;
 
-        $database->query("
+
+            $database->query("
         
             INSERT INTO Admins 
             (first, last, email, password)
@@ -109,23 +110,50 @@ class Admin implements Model
         
         ")
             or die($database->error);
+
     }
 
-    // returns true if the user is in the Admin table, identified uniquely by the email
-    private static function _user_in_database($email) {
+    public function save($new_email = null) {
 
+        $database = Settings::get_database_connection();
+
+        $mode = ($new_email == null);
+
+        $new_email = $mode ? $this->email : $new_email ;
+
+        $adm_first = $this->first;
+        $adm_last = $this->last;
+        $adm_password = $this->password;
+
+
+        $id = $this->fetch_id();
+
+        $query = "
+             UPDATE Admins SET password='$adm_password', first='$adm_first' , last='$adm_last', email='$new_email' WHERE id='$id';
+        ";
+
+        $database->query($query)
+        or die($database->error);
+
+        $this->email = $new_email;
+    }
+
+
+    public function fetch_id() {
         $database = Settings::get_database_connection();
 
         $result = $database->query("
         
-            SELECT * FROM Admins WHERE email='$email';
+          SELECT Admins.id FROM Admins WHERE email='$this->email';
         
-        ")
-            or die($database->error);
+        ");
 
-        return $result == null;
 
+        while ($row = mysqli_fetch_assoc($result)) {
+            return $row['id'];
     }
+    }
+    // TODO TODO TODO NEED A SAVE_INFO METHOD HERE TO UPDATE THE EMAIL WITHOUT SAVE()
 
     // validates if the model represents a complete record, used to protect the database from incomplete records
     private function _is_valid() {
@@ -141,5 +169,45 @@ class Admin implements Model
 
     public function getEmail() {
         return $this->email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getFirst()
+    {
+        return $this->first;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getLast()
+    {
+        return $this->last;
+    }
+
+    /**
+     * @param mixed $email
+     */
+    public function setEmail($email)
+    {
+        $this->email = $email;
+    }
+
+    /**
+     * @param mixed $first
+     */
+    public function setFirst($first)
+    {
+        $this->first = $first;
+    }
+
+    /**
+     * @param mixed $last
+     */
+    public function setLast($last)
+    {
+        $this->last = $last;
     }
 }
