@@ -153,7 +153,7 @@ function initialize_admins( $data_filename) {
 
     $file_str = file_get_contents($data_filename);
 
-    $row_array = explode("/\n", $file_str);
+    $row_array = explode("\n", $file_str);
 
     $adm_array = array();
 
@@ -174,6 +174,5 @@ function initialize_admins( $data_filename) {
         $ad->store();
 
     endforeach;
-
 
 }

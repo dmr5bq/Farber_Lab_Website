@@ -5,6 +5,7 @@ require_once "../../scripts/data.php";
 
 check_authentication();
 
+
 ?>
 <head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
@@ -49,6 +50,8 @@ check_authentication();
 </body>
 
 <script type="text/javascript">
+
+
     function reset_site() {
 
         var reset_script = '../../local_init.php';

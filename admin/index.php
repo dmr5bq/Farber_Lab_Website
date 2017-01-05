@@ -27,6 +27,7 @@
 ?>
 <head>
     <link rel="stylesheet" href="../stylesheets/bootstrap/css/bootstrap.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 </head>
 <body>
 <div class="container">
@@ -73,14 +74,15 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $email = $_POST['email'];
     $password_plaintext = $_POST['password'];
 
-
     $_SESSION['authenticator']->authenticate($email, $password_plaintext);
 
     if ($_SESSION['authenticator']->status == Authenticator::AUTH_OK) {
-        if (!isset($_SESSION['admin']))
-            $_SESSION['admin'] = fetch_admin_by_email($email);
-        if (!isset($_SESSION['id']))
-            $_SESSION['id'] = $_SESSION['admin']->fetch_id();
+        if (!isset($_SESSION['admin'])) {
+            $_SESSION['admin'] = new Admin();
+            $_SESSION['admin']->setEmail($email);
+            $_SESSION['admin']->update();
+            echo $_SESSION['admin']->toString();
+        }
     }
 
     $_SESSION['authenticator']->redirect();

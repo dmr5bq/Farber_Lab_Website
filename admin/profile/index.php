@@ -1,9 +1,12 @@
 <?php
 
+// TODO TODO TODO TODO function is broken
+
 
 require_once "../scripts/auth_check.php";
 require_once "../scripts/display_injector.php";
 require_once "../../scripts/Admin.php";
+require_once "../../scripts/retrieval.php";
 
 check_authentication();
 
@@ -12,12 +15,12 @@ check_authentication();
 <html>
 <head>
     <link rel="stylesheet" href="../../stylesheets/bootstrap/css/bootstrap.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="../../scripts/jquery.js"></script>
 </head>
 <body>
     <?php
 
-    generate_header( $_SESSION['admin'] )
+    generate_header( $_SESSION['admin'] );
 
     ?>
     <div class="container container-fluid">
@@ -36,7 +39,7 @@ check_authentication();
 
                 <button id="btn-0" type="button" class="btn btn-lg btn-default" onclick="display_update_password_form('<?php echo $email ?>')">Update Password</button>
 
-                <button id="btn-1" type="button" class="btn btn-lg btn-default" onclick="display_update_information_form('<?php echo $first ?>', '<?php echo $last ?>', '<?php echo $email ?>')">Update Information</button>
+                <button id="btn-1" type="button" class="btn btn-lg btn-default" onclick="display_update_information_form()">Update Information</button>
 
                 <button id="btn-2" type="button" class="btn btn-lg btn-default" onclick="display_update_preferences_form('<?php echo $email ?>')">Update Preferences</button>
         </div>
@@ -48,9 +51,14 @@ check_authentication();
 
 <script type="text/javascript">
 
+    var admin_first = '<?php echo fetch_admin_by_email($_SESSION['admin']->getEmail())->getFirst() ?>';
+    var admin_last = '<?php echo fetch_admin_by_email($_SESSION['admin']->getEmail())->getLast() ?>';
     var admin_email = '<?php echo $_SESSION['admin']->getEmail() ?>';
 
-    function display_update_password_form(email) {
+
+
+
+    function display_update_password_form( email ) {
 
         clear_display();
 
@@ -112,8 +120,6 @@ check_authentication();
         html += "</div>";
 
         $("#display-frame").html( html );
-
-        refresh_buttons();
 
     }
 
@@ -186,8 +192,6 @@ check_authentication();
 
         clear_display();
 
-        refresh_buttons();
-
         var html = "<div class='col-xs-12'>";
 
         html += "<div class='alert alert-success' role='alert'>";
@@ -206,8 +210,6 @@ check_authentication();
 
         clear_display();
 
-        refresh_buttons();
-
         var html = "<div class='col-xs-12'>";
 
         html += "<div class='alert alert-success' role='alert'>";
@@ -225,8 +227,6 @@ check_authentication();
 
         clear_display();
 
-        refresh_buttons();
-
         var html = "<div class='col-xs-12'>";
 
         html += "<div class='alert alert-warning' role='alert'>";
@@ -241,23 +241,23 @@ check_authentication();
 
     }
 
-    function display_update_information_form(first, last, email) {
+    function display_update_information_form() {
 
         clear_display();
 
         var html = "<div class='row'>";
 
-            html += "<div class='col-xs-2'>";
+                html += "<div class='col-xs-2'>";
 
-                 html += "<p>First Name</p>";
+                     html += "<p>First Name</p>";
 
-            html += "</div>";
+                html += "</div>";
 
-            html += "<div class='col-xs-4'>";
+                html += "<div class='col-xs-4'>";
 
-                html += "<input type='text' id='new-first' value='" + first + "'/>";
+                    html += "<input type='text' id='new-first' value='" + admin_first + "'/>";
 
-            html += "</div>";
+                html += "</div>";
 
             html += "</div>";
 
@@ -271,23 +271,7 @@ check_authentication();
 
                 html += "<div class='col-xs-4'>";
 
-                    html += "<input type='text' id='new-last' value='" + last + "'/>";
-
-                html += "</div>";
-
-            html += "</div>";
-
-            html += "<div class='row'>";
-
-                html += "<div class='col-xs-2'>";
-
-                    html += "<p>Email Address</p>";
-
-                html += "</div>";
-
-                html += "<div class='col-xs-4'>";
-
-                    html += "<input type='text' id='new-email' value='" + email + "'/>";
+                    html += "<input type='text' id='new-last' value='" + admin_last + "'/>";
 
                 html += "</div>";
 
@@ -295,7 +279,7 @@ check_authentication();
 
                 html += "<div class='col-xs-4'>";
 
-                    html += "<button class='btn btn-md btn-primary' onclick='submit_information_form(\"" + email + "\")'> Update Information </button>";
+                    html += "<button class='btn btn-md btn-primary' onclick='submit_information_form(\"" + admin_email + "\")'> Update Information </button>";
 
                 html += "</div>";
 
@@ -305,14 +289,16 @@ check_authentication();
 
     }
 
-    function submit_information_form( old_email ) {
+    function submit_information_form(old_email) {
 
         var json_obj = {};
 
-        json_obj.old_email = old_email;
-        json_obj.new_email = $("#new-email").val();
+        json_obj.email = old_email;
         json_obj.new_first = $("#new-first").val();
         json_obj.new_last = $("#new-last").val();
+
+        admin_first = json_obj.new_first ;
+        admin_last = json_obj.new_last;
 
         json_data = JSON.stringify(json_obj);
 
@@ -329,50 +315,10 @@ check_authentication();
                 default:
                     generate_alert_warning_error();
             }
-
         });
-
     }
 
-    function refresh_buttons() {
 
-        refresh_script = '../scripts/refresh_state.php';
-
-        input = {'admin_email':admin_email};
-
-
-        $.post(refresh_script, JSON.stringify(input), function(data) {
-
-                var response = JSON.parse(data);
-
-                admin_email = response.admin_email;
-
-                var admin_first = response.admin_first;
-
-                var admin_last = response.admin_last;
-
-                var new_func_0 = 'display_update_password_form("' + admin_email + '")' ;
-
-                var new_func_1 = 'display_update_information_form("' + admin_first + '", "' + admin_last + '" , "' + admin_email + '" )' ;
-
-                var new_func_2 = 'display_update_preferences_form("' + admin_email + '")' ;
-
-                $('#btn-0').attr('onclick', new_func_0);
-
-                $('#btn-1').attr('onclick', new_func_1);
-
-                $('#btn-2').attr('onclick', new_func_2);
-
-                /*
-                * TODO:
-                * write function that will access the admin by the id and not the email alone in the scripts to ensure accuracy
-                *
-                * */
-            }
-
-        );
-
-    }
 
     function display_update_preferences_form() {
 

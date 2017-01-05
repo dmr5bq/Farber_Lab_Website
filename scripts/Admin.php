@@ -113,46 +113,25 @@ class Admin implements Model
 
     }
 
-    public function save($new_email = null) {
+    public function save() {
 
         $database = Settings::get_database_connection();
 
-        $mode = ($new_email == null);
-
-        $new_email = $mode ? $this->email : $new_email ;
-
+        $adm_email = $this->email;
         $adm_first = $this->first;
         $adm_last = $this->last;
         $adm_password = $this->password;
 
-
-        $id = $this->fetch_id();
-
-        $query = "
-             UPDATE Admins SET password='$adm_password', first='$adm_first' , last='$adm_last', email='$new_email' WHERE id='$id';
-        ";
-
-        $database->query($query)
+        $database->query(
+            "
+             UPDATE Admins SET password='$adm_password', first='$adm_first' , last='$adm_last' WHERE email='$adm_email' ;
+            "
+        )
         or die($database->error);
-
-        $this->email = $new_email;
     }
 
 
-    public function fetch_id() {
-        $database = Settings::get_database_connection();
 
-        $result = $database->query("
-        
-          SELECT Admins.id FROM Admins WHERE email='$this->email';
-        
-        ");
-
-
-        while ($row = mysqli_fetch_assoc($result)) {
-            return $row['id'];
-    }
-    }
     // TODO TODO TODO NEED A SAVE_INFO METHOD HERE TO UPDATE THE EMAIL WITHOUT SAVE()
 
     // validates if the model represents a complete record, used to protect the database from incomplete records

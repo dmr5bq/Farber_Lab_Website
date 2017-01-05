@@ -25,7 +25,6 @@ class Authenticator
 
             $password_hash = Admin::encrypt($password);
 
-            echo "$email $password $password_hash <br/>";
 
             $sql_result = $database->query("
         
@@ -37,7 +36,6 @@ class Authenticator
 
             if ($match != null) {
 
-                echo $match['email'];
 
                 return strcmp($match['password'], $password_hash) == 0;
             }
@@ -68,7 +66,6 @@ class Authenticator
     function authenticate($email, $password)
         {
 
-        echo $this->status;
 
         if ($this->is_valid_admin($email, $password)) {
 

@@ -3,21 +3,22 @@
 require_once "../../Settings.php";
 require_once "../../scripts/Admin.php";
 
+session_start();
+
 $str_data = file_get_contents('php://input');
 
 $array_data = json_decode($str_data, true);
 
-$old_email = rtrim($array_data['old_email']);
-$new_email = rtrim($array_data['new_email']);
+$old_email = rtrim($array_data['email']);
 $new_first = rtrim($array_data['new_first']);
 $new_last = rtrim($array_data['new_last']);
 
-$admin = fetch_admin_by_email($old_email);
+$admin = $_SESSION['admin'];
 
 $admin->setFirst($new_first);
 $admin->setLast($new_last);
 
-$admin->save($new_email);
+$admin->save();
 
 echo "0";
 
