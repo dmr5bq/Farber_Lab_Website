@@ -80,8 +80,8 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
         if (!isset($_SESSION['admin'])) {
             $_SESSION['admin'] = new Admin();
             $_SESSION['admin']->setEmail($email);
-            $_SESSION['admin']->update();
-            echo $_SESSION['admin']->toString();
+            $_SESSION['admin'] = fetch_admin_by_email($_SESSION['admin']->getEmail());
+
         }
     }
 

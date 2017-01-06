@@ -15,7 +15,7 @@ check_authentication();
 <body>
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h2>Welcome, administrator.</h2><p>You're logged in as <?php echo "<b>".$_SESSION['admin']->getEmail().".</b>"; ?></p>
+            <h2>Welcome, <?php echo $_SESSION['admin']->getFirst().' '.$_SESSION['admin']->getLast();?></h2><p>You're logged in as <?php echo "<b>".$_SESSION['admin']->getEmail().".</b>"; ?></p>
         </div>
         <div class="panel-footer">
             <div class="btn-group" role="group" aria-label="...">
@@ -41,10 +41,10 @@ check_authentication();
             <button type="button" class="btn btn-md btn-primary" onclick="location.href = '../admins';">
                 <span class="glyphicon glyphicon-star"></span> Manage Administrators
             </button>
-            <button type="button" class="btn btn-md btn-danger" onclick="reset_site()">
-                <span class="glyphicon glyphicon-flag"></span> Reset Website to Default
-            </button>
         </div>
+             <button type="button" class="btn btn-lg btn-danger" onclick="reset_site()">
+                 <span class="glyphicon glyphicon-flag"></span> Reset Website to Default
+             </button>
         </div>
     </div>
 </body>

@@ -55,6 +55,10 @@ check_authentication();
 
         }
 
+        function refresh() {
+
+        }
+
     </script>
 </body>
 

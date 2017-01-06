@@ -163,7 +163,6 @@ check_authentication();
                 default:
                     generate_alert_warning_error();
 
-
             }
 
         });
