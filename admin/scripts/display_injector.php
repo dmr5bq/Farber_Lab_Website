@@ -2,7 +2,7 @@
 
 
 
-function generate_header( $admin ) {
+function generate_header( $admin, $section ) {
 
     require_once "../../scripts/Admin.php";
 
@@ -11,7 +11,7 @@ function generate_header( $admin ) {
     echo "
         <div class=\"panel panel-primary row col-xs-12\">
             <div class=\"panel-heading\">
-                <h3>Manage People</h3>
+                <h3>Manage $section</h3>
             </div>
             <div class=\"panel-body\">
                 <p>You're logged in as <b>$email</b></p>

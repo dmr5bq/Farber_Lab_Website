@@ -13,7 +13,7 @@ check_authentication();
 <body>
      <?php
 
-     generate_header( $_SESSION['admin'] )
+     generate_header( $_SESSION['admin'], 'About' );
 
      ?>
 

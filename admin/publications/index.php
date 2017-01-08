@@ -11,7 +11,7 @@ check_authentication();
     <link rel="stylesheet" href="../../stylesheets/bootstrap/css/bootstrap.css">
 </head>
 <body>
-    <?php generate_header( $_SESSION['admin'] ) ?>
+    <?php generate_header( $_SESSION['admin'], 'Publications' ) ?>
 
     <script type="text/javascript">
 

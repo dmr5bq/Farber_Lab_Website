@@ -56,7 +56,7 @@ check_authentication();
 
         var reset_script = '../../local_init.php';
 
-        confirm('Are you sure that you want to reset the website? This cannot be undone.');
+        if (!confirm('Are you sure that you want to reset the website? This cannot be undone.')) return;
 
         $.post(reset_script,'', function() {
             alert('The website has been reset.');

@@ -20,11 +20,12 @@ check_authentication();
 <body>
     <?php
 
-    generate_header( $_SESSION['admin'] );
+    generate_header( $_SESSION['admin'], 'My Profile' );
 
     ?>
     <div class="container container-fluid">
-        <div class="btn-group" role="group" id="button-frame">
+
+        <div class="btn-group row" role="group" id="button-frame">
 
                 <?php
 
@@ -37,15 +38,30 @@ check_authentication();
 
                 ?>
 
-                <button id="btn-0" type="button" class="btn btn-lg btn-default" onclick="display_update_password_form('<?php echo $email ?>')">Update Password</button>
+                <button id="btn-0" type="button" class="btn btn-lg btn-primary" onclick="display_update_password_form('<?php echo $email ?>')">
+                    <span class="glyphicon glyphicon-certificate"></span> Update Password
+                </button>
 
-                <button id="btn-1" type="button" class="btn btn-lg btn-default" onclick="display_update_information_form()">Update Information</button>
+                <button id="btn-1" type="button" class="btn btn-lg btn-primary" onclick="display_update_information_form()">
+                    <span class="glyphicon glyphicon-user"></span>  Update Information
+                </button>
 
-                <button id="btn-2" type="button" class="btn btn-lg btn-default" onclick="display_update_preferences_form('<?php echo $email ?>')">Update Preferences</button>
+                <button id="btn-2" type="button" class="btn btn-lg btn-primary" onclick="display_update_preferences_form('<?php echo $email ?>')">
+                    <span class="glyphicon glyphicon-pencil"></span>  Update Preferences
+                </button>
+
+                <button id="btn-3" type="button" class="btn btn-lg btn-danger" onclick="delete_admin('<?php echo $email?>')">
+                    <span class="glyphicon glyphicon-trash"></span> Deactivate My Account
+                </button>
+
+
+                <button id='panel-button' class="btn btn-lg btn-warning" onclick="panel_up()"><span id="panel-symbol" class="glyphicon glyphicon-triangle-top"></span></button>
+
         </div>
-        <div id="display-frame">
+        <div id="display-frame" class="row">
 
         </div>
+
     </div>
 </body>
 
@@ -54,6 +70,18 @@ check_authentication();
     var admin_first = '<?php echo fetch_admin_by_email($_SESSION['admin']->getEmail())->getFirst() ?>';
     var admin_last = '<?php echo fetch_admin_by_email($_SESSION['admin']->getEmail())->getLast() ?>';
     var admin_email = '<?php echo $_SESSION['admin']->getEmail() ?>';
+
+
+    function panel_up() {
+
+        var $symbol = $('#panel-symbol');
+
+        $symbol.removeClass('glyphicon-triangle-top');
+        $symbol.addClass('glyphicon-triangle-left');
+
+        $('#display-frame').html(null);
+
+    }
 
 
 
@@ -142,7 +170,7 @@ check_authentication();
 
         json_data = JSON.stringify(json_obj);
 
-        confirm ("This action cannot be undone. Are you sure you want to change your password?");
+        if (!confirm ("This action cannot be undone. Are you sure you want to change your password?")) return;
 
         var update_script = "../scripts/update_password.php";
 
@@ -173,7 +201,7 @@ check_authentication();
 
         clear_display();
 
-        var html = "<div class='col-xs-12'>";
+        var html = "<div class='col-xs-8'>";
 
             html += "<div class='alert alert-danger' role='alert'>";
 
@@ -191,7 +219,7 @@ check_authentication();
 
         clear_display();
 
-        var html = "<div class='col-xs-12'>";
+        var html = "<div class='col-xs-8'>";
 
         html += "<div class='alert alert-success' role='alert'>";
 
@@ -205,11 +233,29 @@ check_authentication();
 
     }
 
+    function generate_alert_success_update_preferences() {
+
+        clear_display();
+
+        var html = "<div class='col-xs-8'>";
+
+        html += "<div class='alert alert-success' role='alert'>";
+
+        html += "<p>Your preferences have been updated. </p>";
+
+        html += "</div>";
+
+        html += "</div>";
+
+        $("#display-frame").html( html );
+
+    }
+
     function generate_alert_success_change_information() {
 
         clear_display();
 
-        var html = "<div class='col-xs-12'>";
+        var html = "<div class='col-xs-8'>";
 
         html += "<div class='alert alert-success' role='alert'>";
 
@@ -226,7 +272,7 @@ check_authentication();
 
         clear_display();
 
-        var html = "<div class='col-xs-12'>";
+        var html = "<div class='col-xs-8'>";
 
         html += "<div class='alert alert-warning' role='alert'>";
 
@@ -318,14 +364,72 @@ check_authentication();
     }
 
 
+    function submit_preferences_form(email) {
+
+        var receive_emails = $('#receive-emails').is(":checked") ? 1 : 0;
+
+        var ajax_target = '../scripts/submit_preferences.php';
+
+        var json_obj = {};
+
+        json_obj.receive_emails = receive_emails;
+        json_obj.email = email;
+
+        var json_str = JSON.stringify(json_obj);
+
+        $.post(ajax_target, json_str,function (data) { generate_alert_success_update_preferences() });
+
+    }
+
 
     function display_update_preferences_form() {
 
         clear_display();
+
+        var html = "<div class='row'>";
+
+        html += "<div class='col-xs-2'>";
+
+        html += "<p>Receive Emails for New Messages?</p>";
+
+        html += "</div>";
+
+        html += "<div class='col-xs-1'>";
+
+        html += "<input type='checkbox' id='receive-emails' class='input-lg' checked='true'/>";
+
+        html += "</div>";
+
+        html += "</div>";
+
+        html += "<div class='col-xs-4'>";
+
+        html += "<button class='btn btn-md btn-primary' onclick='submit_preferences_form(\"" + admin_email + "\")'> Update Preferences </button>";
+
+        html += "</div>";
+
+        html += "</div>";
+
+        $("#display-frame").html( html );
     }
 
     function clear_display() {
         $("#display-frame").html('');
+    }
+
+    function delete_admin (email) {
+
+        var ajax_target = '../scripts/delete_admin.php';
+
+        if (!confirm ('This action cannot be undone. Are you sure that you want to delete user ' + email + '?'))
+            return;
+
+
+        $.post( ajax_target, JSON.stringify(email))
+            .then(
+                window.location = '..?status=admin_deleted'
+            );
+
     }
 
 </script>
