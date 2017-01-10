@@ -229,7 +229,7 @@ check_authentication();
             var html = '' +
                 '<div class="row">' +
                     "<div class='btn-group col-xs-12'>" +
-                        '<button class="btn btn-info btn-md"><span class=\'glyphicon glyphicon-refresh\'></span> Refresh</button>' +
+                        '<button class="btn btn-info btn-md" onclick="refresh()"><span class=\'glyphicon glyphicon-refresh\'></span> Refresh</button>' +
                         '<button class="btn btn-primary btn-md" onclick=\'display_add_new_admin()\'><span class=\'glyphicon glyphicon-plus\'></span> Invite Administrator</button>' +
                     '</div>' +
                 '</div>' +
@@ -255,6 +255,12 @@ check_authentication();
 
         function clear_display() {
             $("#display-frame").html('');
+        }
+
+        function refresh() {
+
+           
+
         }
 
 

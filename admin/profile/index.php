@@ -71,10 +71,14 @@ check_authentication();
     var admin_last = '<?php echo fetch_admin_by_email($_SESSION['admin']->getEmail())->getLast() ?>';
     var admin_email = '<?php echo $_SESSION['admin']->getEmail() ?>';
 
+    panel_up();
+
 
     function panel_up() {
 
         var $symbol = $('#panel-symbol');
+
+        $('#panel-button').hide();
 
         $symbol.removeClass('glyphicon-triangle-top');
         $symbol.addClass('glyphicon-triangle-left');
@@ -83,12 +87,21 @@ check_authentication();
 
     }
 
+    function panel_down() {
+        var $symbol = $('#panel-symbol');
 
+        $('#panel-button').show();
+
+        $symbol.addClass('glyphicon-triangle-top');
+        $symbol.removeClass('glyphicon-triangle-left');
+    }
 
 
     function display_update_password_form( email ) {
 
         clear_display();
+
+        panel_down();
 
         var
             html = "<div class='row'>";
@@ -201,6 +214,8 @@ check_authentication();
 
         clear_display();
 
+        panel_down();
+
         var html = "<div class='col-xs-8'>";
 
             html += "<div class='alert alert-danger' role='alert'>";
@@ -218,6 +233,8 @@ check_authentication();
     function generate_alert_success_change_password() {
 
         clear_display();
+
+        panel_down();
 
         var html = "<div class='col-xs-8'>";
 
@@ -237,6 +254,8 @@ check_authentication();
 
         clear_display();
 
+        panel_down();
+
         var html = "<div class='col-xs-8'>";
 
         html += "<div class='alert alert-success' role='alert'>";
@@ -254,6 +273,7 @@ check_authentication();
     function generate_alert_success_change_information() {
 
         clear_display();
+        panel_down();
 
         var html = "<div class='col-xs-8'>";
 
@@ -272,6 +292,8 @@ check_authentication();
 
         clear_display();
 
+        panel_down();
+
         var html = "<div class='col-xs-8'>";
 
         html += "<div class='alert alert-warning' role='alert'>";
@@ -289,6 +311,8 @@ check_authentication();
     function display_update_information_form() {
 
         clear_display();
+
+        panel_down();
 
         var html = "<div class='row'>";
 
@@ -386,6 +410,8 @@ check_authentication();
 
         clear_display();
 
+        panel_down();
+
         var html = "<div class='row'>";
 
         html += "<div class='col-xs-2'>";
@@ -414,7 +440,7 @@ check_authentication();
     }
 
     function clear_display() {
-        $("#display-frame").html('');
+        panel_up();
     }
 
     function delete_admin (email) {
