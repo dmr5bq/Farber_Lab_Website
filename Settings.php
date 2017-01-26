@@ -54,7 +54,7 @@ class Settings
 
         $database_root->query(
             "
-                DROP DATABASE $db_name;
+                DROP DATABASE IF EXISTS $db_name;
             ")
             or die($database_root->error);
 

@@ -1,7 +1,7 @@
 <?php
 
 
-//require_once "../Settings.php";
+require_once "../Settings.php";
 require_once "Admin.php";
 
 function fetch_all_team_members_array() {

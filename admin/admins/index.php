@@ -259,7 +259,7 @@ check_authentication();
 
         function refresh() {
 
-           
+           alert("Not configured! Refresh page instead (Cmd + R)");
 
         }
 

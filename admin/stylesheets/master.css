@@ -1,0 +1,11 @@
+.row-padded {
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.row-header {
+    font-weight: 900;
+    font-size: 16px;
+    border-bottom: 1px dotted black;
+    color: #2b669a;
+}

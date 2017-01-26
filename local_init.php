@@ -82,11 +82,7 @@ function initialize_publications ($data_filename) {
     endforeach;
 
     foreach ($pub_array as $pub_row):
-
-        // create_publication($title, $authors, $published_in, $link, $year, $date)
-
-
-        // TODO TODO TODO NOT WORKING RIGHT
+        
         $pub = Publication::create_publication($pub_row[1], $pub_row[2], $pub_row[3], $pub_row[0], substr($pub_row[4], strlen($pub_row[4]) - 4), $pub_row[4]);
 
 
