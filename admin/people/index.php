@@ -6,6 +6,7 @@ require_once "../scripts/display_injector.php";
 check_authentication();
 
 ?>
+<html>
 <head>
     <link rel="stylesheet" href="../../stylesheets/bootstrap/css/bootstrap.css">
     <link rel="stylesheet" href="../stylesheets/master.css">
@@ -24,6 +25,9 @@ check_authentication();
             </button>
             <button class="btn btn-md btn-primary" onclick="display_add_new_people_form()">
                 <span class="glyphicon glyphicon-plus"></span> Add New Team Member
+            </button>
+            <button class="btn btn-md" onclick="window.location ='alumni/'">
+                Manage Alumni <span class="glyphicon glyphicon-triangle-right"></span>
             </button>
         </div>
         <div id="display-frame">
@@ -182,6 +186,8 @@ check_authentication();
 
             html += "</div>";
 
+            html += generate_frame_clear_button();
+
             $("#display-frame").html( html );
         }
 
@@ -249,7 +255,12 @@ check_authentication();
             var ajax_data = JSON.stringify(json_obj);
 
             $.post(ajax_target, ajax_data, function(data) {
-                console.log(data);
+
+                var html = "<div class='alert alert-success'>You successfully created a new team member, " + first + " " + last + "." +
+                " To upload an image for this person, click \"Show All Team Members\" and then select \"Edit\" next to his/her name." + generate_frame_clear_button() + "</div>";
+
+                $('#display-frame').html(html);
+
             });
 
         }
@@ -288,7 +299,7 @@ check_authentication();
                             "<button class='btn btn-sm btn-danger' onclick='submit_delete_people("+ index +")'>" +
                                 "<span class='glyphicon glyphicon-trash'></span> Delete" +
                             "</button>" +
-                            "<button class='btn btn-sm btn-warning'>" +
+                            "<button class='btn btn-sm btn-warning' onclick='submit_convert_team_member_to_alumni(" + index + ")'>" +
                                 "<span class='glyphicon glyphicon-warning-sign'></span> Retire" +
                             "</button>" +
                             email_link +
@@ -309,6 +320,7 @@ check_authentication();
                 var staff_select = person.category == 'staff' ? 'selected=\'selected\'' : '';
                 var faculty_select = person.category == 'faculty' ? 'selected=\'selected\'' : '';
 
+                console.log("call");
 
                 var html = "<h2>Editing <span class='highlight-text-1'>" + person.first + " " + person.last + "</span></h2>";
 
@@ -420,6 +432,14 @@ check_authentication();
 
                 html += "</div>";
 
+                html += "<div class='row'>";
+
+                html += "   <div class='col-xs-12'>";
+
+                html += "   </div>";
+
+                html += "</div>";
+
                 html += "   <div class='row col-xs-4'>";
 
                 html += "       <button class='btn btn-md btn-primary'>" +
@@ -430,22 +450,47 @@ check_authentication();
 
                 html += "   </div>";
 
+                html += generate_frame_clear_button();
+
                 html += "</div></form>";
+
+
 
                 return html;
             }
             else return null;
         }
 
-        function display_edit_people(index = -1) {
+        function submit_convert_team_member_to_alumni(index = -1) {
 
             if (index != -1) {
+
+                if (!confirm("Are you sure you want to retire " + state.all_people[index].last + ", " + state.all_people[index].first + "? This cannot be undone."))
+                    return;
+
+                var ajax_target = '../scripts/convert_team_member_to_alumni.php';
+
+                var ajax_data = JSON.stringify(state.all_people[index]);
+
+                $.post(
+                    ajax_target,
+                    ajax_data,
+                    function() {
+                        state.all_people[index] = null;
+
+                        reposition_people_array();
+
+                        display_all_people();
+                    }
+                );
+
+            }
+        }
+
+        function display_edit_people(index = -1) {
+            if (index != -1) {
                 clear_display();
-
-                person = state.all_people[index];
-
                 $('#display-frame').html(generate_edit_display_for_person(index));
-
             }
         }
 
@@ -464,8 +509,6 @@ check_authentication();
             $("#display-frame").html(null);
         }
 
-
     </script>
-
-
 </body>
+</html>
