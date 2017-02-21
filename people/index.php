@@ -3,6 +3,7 @@
 
 <?php
 
+    require_once "../Settings.php";
     require_once "../scripts/data.php";
     require_once "../scripts/display_injector.php";
     require_once "../scripts/TeamMember.php";

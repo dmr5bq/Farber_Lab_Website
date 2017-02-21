@@ -35,7 +35,7 @@ check_authentication();
             <button type="button" class="btn btn-md btn-primary" onclick="location.href = '../about';">
                 <span class="glyphicon glyphicon-info-sign"></span> Manage About
             </button>
-            <button type="button" class="btn btn-md btn-primary" onclick="location.href = '../people';">
+            <button type="button" class="btn btn-md btn-primary" onclick="location.href = '../publications';">
                 <span class="glyphicon glyphicon-book"></span> Manage Publications
             </button>
             <button type="button" class="btn btn-md btn-primary" onclick="location.href = '../admins';">
@@ -50,7 +50,6 @@ check_authentication();
 </body>
 
 <script type="text/javascript">
-
 
     function reset_site() {
 

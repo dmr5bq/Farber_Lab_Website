@@ -68,7 +68,6 @@
 
 <?php
 
-
 if (isset($_POST['email']) && isset($_POST['password'])) {
 
     $email = $_POST['email'];
@@ -88,6 +87,5 @@ if (isset($_POST['email']) && isset($_POST['password'])) {
     $_SESSION['authenticator']->redirect();
 
 }
-
 
 ?>
