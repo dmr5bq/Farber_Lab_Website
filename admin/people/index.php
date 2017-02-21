@@ -48,6 +48,7 @@ check_authentication();
             $.post(ajax_target,'', function(data) {
 
                 state.all_people = JSON.parse(data);
+                display_all_people();
 
             });
         }

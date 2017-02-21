@@ -14,6 +14,14 @@ check_authentication();
 <body onload="initialize()">
     <?php generate_header( $_SESSION['admin'], 'Publications' ) ?>
     <div class="container">
+        <div class="row btn-group">
+            <button class="btn btn-primary" onclick="display_default()">
+                <span class="glyphicon glyphicon-th-list"></span> View All Publications
+            </button>
+            <button class="btn btn-primary" onclick="display_add_publication()">
+                <span class="glyphicon glyphicon-plus"></span> Add New Publication
+            </button>
+        </div>
         <div class="row col-xs-12" id="display-frame">
 
         </div>
@@ -37,7 +45,7 @@ check_authentication();
 
         function display_default() {
 
-            var html = '';
+            var html = '<h3>All Publications</h3>';
 
             html += generate_publication_table_header();
 
@@ -77,7 +85,7 @@ check_authentication();
                 output += "         <button class='btn btn-primary' onclick='display_edit_publication(" + pub_ind + ")'>";
                 output += "             <span class='glyphicon glyphicon-edit'></span>";
                 output += "         </button>";
-                output += "         <button class='btn btn-danger'>";
+                output += "         <button class='btn btn-danger' onclick=''>";
                 output += "             <span class='glyphicon glyphicon-trash'></span>";
                 output += "         </button>";
                 output += "     </div>";
@@ -181,7 +189,7 @@ check_authentication();
                 output += "</div>";
                 output += "<div class='row'>";
                 output += "     <div class='col-xs-3'>";
-                output += "         <button type='button' class='btn btn-md btn-primary'><span class='glyphicon glyphicon-send'></span> Submit</button>";
+                output += "         <button onclick='submit_edit_publication(" + pub_ind + ")' type='button' class='btn btn-md btn-primary'><span class='glyphicon glyphicon-send'></span> Submit</button>";
                 output += "     </div>";
                 output += "</div>";
             }
@@ -192,6 +200,25 @@ check_authentication();
         function submit_edit_publication(pub_ind = -1) {
 
             var ajax_target = '../scripts/submit_edit_publication.php';
+            var ajax_data = undefined;
+
+            if (pub_ind != -1) {
+
+                var pub = state.all_publications[pub_ind];
+
+                pub.title = $("#title").val();
+                pub.authors = $("#authors").val();
+                pub.date = $("#date").val();
+                pub.published_in = $("#published_in").val();
+                pub.year = $("#year").val();
+                pub.link = $("#link").val();
+
+                ajax_data = JSON.stringify(pub);
+
+                $.post(ajax_target, ajax_data, function (data) {
+                    display_default();
+                });
+            }
 
         }
 
@@ -199,12 +226,12 @@ check_authentication();
 
         }
 
-        function add_new_publication() {
+        function submit_add_publication() {
 
         }
 
         function display_add_publication() {
-
+            clear_display();
         }
 
 
