@@ -85,7 +85,7 @@ check_authentication();
                 output += "         <button class='btn btn-primary' onclick='display_edit_publication(" + pub_ind + ")'>";
                 output += "             <span class='glyphicon glyphicon-edit'></span>";
                 output += "         </button>";
-                output += "         <button class='btn btn-danger' onclick=''>";
+                output += "         <button class='btn btn-danger' onclick='submit_delete_publication(" + pub_ind + ")'>";
                 output += "             <span class='glyphicon glyphicon-trash'></span>";
                 output += "         </button>";
                 output += "     </div>";
@@ -118,9 +118,6 @@ check_authentication();
             return output;
         }
 
-        function display_publication_year(year = 0) {
-
-        }
 
         function display_edit_publication(pub_ind = -1) {
             clear_display();
@@ -222,25 +219,169 @@ check_authentication();
 
         }
 
-        function delete_publication(pub_ind = -1) {
+        function submit_delete_publication(pub_ind = -1) {
 
+            var ajax_target = '../scripts/submit_delete_publication.php';
+            var ajax_data = state.all_publications[pub_ind]['id'];
+
+            $.post(ajax_target, ajax_data, function(data) {
+                state.all_publications[pub_ind] = null;
+                shift_publications_array();
+                display_default();
+            });
+
+        }
+
+        function shift_publications_array() {
+
+            var arr = [];
+
+            for (var i = 0; i < state.all_publications.length; i++)
+                if (state.all_publications[i] != null)
+                    arr.push(state.all_publications[i]);
+
+            state.all_publications = arr;
+
+        }
+
+
+        function display_add_publication() {
+            clear_display();
+
+            var html = "<h2>Add New Publication</h2>";
+
+            html += "<style>input {width: 85%;}</style>";
+
+            html += "<div class='row'>";
+
+            html += "   <div class='col-xs-2'>";
+
+            html += "       <p>Title</p>";
+
+            html += "   </div>";
+
+            html += "   <div class='col-xs-10'>";
+
+            html += "       <input type='text' id='title'/>";
+
+            html += "   </div>";
+
+            html += "</div>";
+
+            html += "<div class='row'>";
+
+            html += "   <div class='col-xs-2'>";
+
+            html += "       <p>Authors</p>";
+
+            html += "   </div>";
+
+            html += "   <div class='col-xs-10'>";
+
+            html += "       <input type='text' id='authors'/>";
+
+            html += "   </div>";
+
+            html += "</div>";
+
+            html += "<div class='row'>";
+
+            html += "   <div class='col-xs-2'>";
+
+            html += "       <p>Journal</p>";
+
+            html += "   </div>";
+
+            html += "   <div class='col-xs-4'>";
+
+            html += "       <input type='text' id='published_in'/>";
+
+            html += "   </div>";
+
+            html += "</div>";
+
+            html += "<div class='row'>";
+
+            html += "   <div class='col-xs-2'>";
+
+            html += "       <p>Date</p>";
+
+            html += "   </div>";
+
+            html += "   <div class='col-xs-4'>";
+
+            html += "       <input type='text' id='date'/>";
+
+            html += "   </div>";
+
+            html += "</div>";
+
+            html += "<div class='row'>";
+
+            html += "   <div class='col-xs-2'>";
+
+            html += "       <p>Year</p>";
+
+            html += "   </div>";
+
+            html += "   <div class='col-xs-4'>";
+
+            html += "       <input type='text' id='year'/>";
+
+            html += "   </div>";
+
+            html += "</div>";
+
+            html += "<div class='row'>";
+
+            html += "   <div class='col-xs-2'>";
+
+            html += "       <p>Link</p>";
+
+            html += "   </div>";
+
+            html += "   <div class='col-xs-10'>";
+
+            html += "       <input type='text' id='link'/>";
+
+            html += "   </div>";
+
+            html += "</div>";
+
+            html += "   <div class='row col-xs-4'>";
+
+            html += "       <button class='btn btn-md btn-primary' onclick='submit_add_publication()'>" +
+
+                "               <span class='glyphicon glyphicon-check'></span> Submit" +
+
+                "           </button>";
+
+            html += "   </div>";
+
+            html += "</div>";
+
+            $("#display-frame").html( html );
         }
 
         function submit_add_publication() {
 
-        }
+            var ajax_target = '../scripts/submit_add_publication.php';
 
-        function display_add_publication() {
-            clear_display();
-        }
+            var pub = {};
 
+            pub.title = $("#title").val();
+            pub.authors = $("#authors").val();
+            pub.date = $("#date").val();
+            pub.published_in = $("#published_in").val();
+            pub.year = $("#year").val();
+            pub.link = $("#link").val();
 
-        function display_all_publication_years(years=[]) {
+            var ajax_data = JSON.stringify(pub);
 
-        }
-
-
-        function refresh() {
+            $.post(ajax_target, ajax_data, function(data) {
+                initialize();
+                display_default();
+            });
 
         }
 

@@ -15,7 +15,7 @@ check_authentication();
 <body onload="initialize()">
     <?php generate_header( $_SESSION['admin'], 'Administrators' ) ?>
 
-    <div class="container" onload="display_default()">
+    <div class="container" onload="display_all_admins()">
         <div class="row" id="display-frame" >
         </div>
     </div>
@@ -23,15 +23,12 @@ check_authentication();
     <script type="text/javascript">
 
         var current_admins = [];
-        var selected_admin = null;
         var active_admin = '<?php echo $_SESSION['admin']->getEmail() ?>';
 
 
-
         function clear_admins() {
-            for (var i = 0 ; i < current_admins.length ; i++) {
+            for (var i = 0 ; i < current_admins.length ; i++)
                 current_admins.pop();
-            }
         }
 
         function initialize() {
@@ -47,12 +44,8 @@ check_authentication();
                 for ( var i = 0 ; i < adm_obj.length ; i++ ) {
                     current_admins.push(adm_obj[i]);
                 }
-                    display_default();
+                    display_all_admins();
                 });
-        }
-
-        function display_default() {
-            display_all_admins();
         }
 
 
@@ -61,7 +54,7 @@ check_authentication();
         }
 
         function generate_back_button() {
-            return "<button class='btn btn-md btn-default' onclick='display_default()'><span class='glyphicon glyphicon-triangle-left'></span> Go Back</button>";
+            return "<button class='btn btn-md btn-default' onclick='display_all_admins()'><span class='glyphicon glyphicon-triangle-left'></span> Go Back</button>";
         }
 
 
@@ -131,11 +124,6 @@ check_authentication();
 
 
         }
-
-        function send_reset_password() {
-
-        }
-
 
         function add_admin() {
 
@@ -214,8 +202,6 @@ check_authentication();
                         admin.email +
                     '</div>' +
                     '<div class="col-xs-5 btn-group">' +
-                        "<button class='btn btn-primary btn-sm'><span class='glyphicon glyphicon-edit'></span> Edit</button>" +
-                        "<button class='btn btn-warning btn-sm'><span class='glyphicon glyphicon-open-file'></span> Reset</button>" +
                         "<button class='btn btn-danger btn-sm' onclick=\'delete_admin(\"" + admin.email + "\")\'><span class='glyphicon glyphicon-trash'></span> Delete</button>" +
                 '</div>' +
                 '</div>';
@@ -229,7 +215,6 @@ check_authentication();
             var html = '' +
                 '<div class="row">' +
                     "<div class='btn-group col-xs-12'>" +
-                        '<button class="btn btn-info btn-md" onclick="refresh()"><span class=\'glyphicon glyphicon-refresh\'></span> Refresh</button>' +
                         '<button class="btn btn-primary btn-md" onclick=\'display_add_new_admin()\'><span class=\'glyphicon glyphicon-plus\'></span> Invite Administrator</button>' +
                     '</div>' +
                 '</div>' +
@@ -257,14 +242,6 @@ check_authentication();
             $("#display-frame").html('');
         }
 
-        function refresh() {
-
-           alert("Not configured! Refresh page instead (Cmd + R)");
-
-        }
-
-
     </script>
-
 </body>
 
