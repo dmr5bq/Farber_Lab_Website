@@ -147,8 +147,11 @@ check_authentication();
 
             var ajax_target = '../scripts/invite_new_admin.php';
 
+            clear_display();
+            display_all_admins();
+
             $.post( ajax_target , json_str , function (data) {
-                console.log(data);
+
             });
 
         }
@@ -218,6 +221,7 @@ check_authentication();
                         '<button class="btn btn-primary btn-md" onclick=\'display_add_new_admin()\'><span class=\'glyphicon glyphicon-plus\'></span> Invite Administrator</button>' +
                     '</div>' +
                 '</div>' +
+                '<h2>All Admins</h2>' +
                 '<div class="row">' +
                 '<div class="col-xs-3">' +
                     '<b>Name</b>' +
