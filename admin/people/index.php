@@ -192,13 +192,6 @@ check_authentication();
             $("#display-frame").html( html );
         }
 
-        function refresh() {
-            issue_not_config_warning();
-        }
-
-        function display_people_category() {
-            issue_not_config_warning();
-        }
 
         function submit_delete_people(index = -1) {
 
@@ -320,8 +313,6 @@ check_authentication();
                 var student_select = person.category == 'students' ? 'selected=\'selected\'' : '';
                 var staff_select = person.category == 'staff' ? 'selected=\'selected\'' : '';
                 var faculty_select = person.category == 'faculty' ? 'selected=\'selected\'' : '';
-
-                console.log("call");
 
                 var html = "<h2>Editing <span class='highlight-text-1'>" + person.first + " " + person.last + "</span></h2>";
 
