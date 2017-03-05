@@ -33,6 +33,7 @@ require_once "../../scripts/Admin.php";
                 } else send_redirect();
 
             } else send_redirect();
+
     } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 
         if (isset($_POST['first']) && isset($_POST['last']) && isset($_POST['email']) && isset($_POST['password'])) {
@@ -50,8 +51,6 @@ require_once "../../scripts/Admin.php";
 
 
     ?>
-
-
 
 </body>
 

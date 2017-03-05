@@ -9,27 +9,78 @@ check_authentication();
 
 <head>
     <link rel="stylesheet" href="../../stylesheets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../../stylesheets/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../stylesheets/master.css">
+    <script src="../../scripts/jquery.js"></script>
 </head>
-<body>
+<body onload="initialize() ">
      <?php
 
      generate_header( $_SESSION['admin'], 'About' );
 
      ?>
+     <div class="container" id="display-frame">
+
+
+     </div>
+
 
     <script type="text/javascript">
 
-        about_sections = [];
+        var state = {};
+
+        state.titles = [];
+        state.sections = [];
 
         function initialize() {
+
+            var ajax_target = '../scripts/fetch_about_sections.php';
+
+            $.post(ajax_target, null, function (data) {
+
+                var sections = JSON.parse(data);
+                state.titles = sections[0];
+                state.sections = sections[1];
+            });
 
         }
 
         function display_default() {
+            var html = "";
+
+            for ( var i = 0 ; i < state.titles.length; i++ ) {
+                html += generate_about_section_display(i);
+            }
+
+            $("#display-frame").html(html);
+        }
+
+        function generate_about_section_display(index = -1) {
+
+            if (index != -1) {
+
+                var html = '';
+
+                html += '<div class=\'row\'>';
+                html += '   <div class=\'row col-xs-12\'>';
+                html += '       <b>' + state.titles[index] + '</b>';
+                html += '   </div>';
+                html += '   <div class=\'row col-xs-12\'>';
+                html += '       ' + state.sections[index];
+                html += '   </div>';
+                html += '</div>';
+
+                return html;
+
+            } else return '';
 
         }
 
-        function display_about_section(about_section = null) {
+        function expand_section(index) {
+
+        }
+
+        function hide_section(index) {
 
         }
 
